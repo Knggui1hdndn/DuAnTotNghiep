@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
        mainViewModel.Login(new LoginRequest("Nguyễn Duy Khang","0867896418"));//start login
 
         mainViewModel.OnLogin.observe(this, result -> {
-            ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<MessageResponse>() {
+            ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
                     //Xử lí khi thành công
