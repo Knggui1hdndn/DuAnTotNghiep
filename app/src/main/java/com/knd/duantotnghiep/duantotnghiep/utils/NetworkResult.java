@@ -20,11 +20,8 @@ public class NetworkResult<T> {
         call.enqueue(new Callback<T>() {
             @Override
             public void onResponse(Call<T> call, Response<T> response) {
-
-
                 if (response.isSuccessful() && response.body() != null) {
                     T data = response.body();
-
                     if (onSaveLocal != null && response.headers().size() > 0) {
                         String auth = response.headers().get("Authorization");
                         onSaveLocal.save(auth);
