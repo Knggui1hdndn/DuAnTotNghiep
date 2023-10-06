@@ -38,7 +38,6 @@ android {
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
-
     //hilt-dagger
     implementation ("com.google.dagger:hilt-android:2.44")
     annotationProcessor ("com.google.dagger:hilt-compiler:2.44")

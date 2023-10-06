@@ -49,7 +49,7 @@ public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActi
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(enableDisplayHome);
             getSupportActionBar().setHomeAsUpIndicator(draw);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar(). setDisplayShowHomeEnabled(true);
         }
     }
 
