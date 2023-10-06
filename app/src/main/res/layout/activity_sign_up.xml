@@ -4,47 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SignInActivity"
+    tools:context=".ui.SignUpActivity"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign in"
+        android:text="Sign up"
         android:textSize="40dp"
         android:textColor="#090909"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="30dp"
         android:textStyle="bold"/>
-<EditText
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
-    android:id="@+id/edEmailSignin"
-    android:hint="E-mail"
-    android:layout_gravity="center"
-    android:layout_marginTop="50dp"/>
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:id="@+id/edPasswordSignin"
+        android:id="@+id/edEmailSignup"
+        android:hint="E-mail"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/edPasswordSignup"
         android:hint="Password"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:inputType="textPassword"/>
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Forgot password?"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="270dp"
-        android:id="@+id/tvForgotPassword"
-        android:textColor="#090909"
-        />
+        android:id="@+id/edRePasswordSignup"
+        android:hint="Repect Password"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:inputType="textPassword"/>
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Sign in"
+        android:text="Sign up"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/btnSignIn"
         android:textColor="#F3ECEF"
         android:backgroundTint="#090909"
@@ -63,7 +62,7 @@
         android:text="Sign in with Google"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:id="@+id/btnSignInGoogle"
+        android:id="@+id/btnSignUpGoogle"
         android:textColor="#0E0E0E"
         android:backgroundTint="#9A9999"
         />
@@ -73,7 +72,7 @@
         android:text="Sign in with Facebook"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:id="@+id/btnSignInFacebook"
+        android:id="@+id/btnSignUpFacebook"
         android:textColor="#0E0E0E"
         android:backgroundTint="#9A9A9A"
         />
@@ -81,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+
         android:gravity="center"
         android:layout_marginTop="10dp">
         <TextView

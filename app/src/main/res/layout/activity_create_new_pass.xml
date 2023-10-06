@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ForgotPasswordActivity"
+    tools:context=".ui.CreateNewPassActivity"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forgot password"
+        android:text="Create new password"
         android:textSize="40dp"
         android:textColor="#090909"
         android:layout_marginTop="70dp"
@@ -19,25 +19,34 @@
         android:layout_marginTop="20dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Please enter your email address. You will recive alink to create a new password."
+        android:text="Your password must include minimum 8 characters."
         android:textColor="#FC655858"/>
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:id="@+id/edEmailForgot"
-        android:hint="E-mail"
+        android:id="@+id/edNewPassword"
+        android:hint="Password"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/edReNewPassword"
+        android:hint="Repect Password"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:inputType="textPassword"
         />
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Send"
         android:layout_gravity="center"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="250dp"
         android:id="@+id/btnSendForgot"
         android:textColor="#F3ECEF"
         android:backgroundTint="#090909"
         />
-
 </LinearLayout>
