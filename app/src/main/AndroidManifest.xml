@@ -23,9 +23,7 @@
        <activity
             android:name=".ui.CreateNewPassActivity"
             android:exported="false" />
-       <activity
-            android:name=".ui.ShoppingBagActivity"
-            android:exported="false" />
+ 
  
         <activity
             android:name=".ui.SignUpActivity"
