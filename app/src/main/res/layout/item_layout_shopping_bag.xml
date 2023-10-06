@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="35dp"
+    android:paddingBottom="35dp"
+    android:paddingLeft="35dp"
+    android:weightSum="12"
+    android:background="@drawable/background_item">
+    
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="4.5"
+        android:layout_height="170dp"
+        android:id="@+id/image_product"/>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="name here"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_bold"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/baseline_cancel_24" />
+
+        </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size: "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@android:color/darker_gray"
+            />
+
+    <TextView
+        android:id="@+id/tv_product_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Size here"
+        android:textSize="18dp"
+        android:fontFamily="@font/inter_bold"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        />
+
+
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/btn_decrease_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_remove_circle_outline_24"
+                android:layout_marginRight="10dp"/>
+
+            <EditText
+                android:id="@+id/ed_product_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:paddingRight="20dp"
+                android:fontFamily="@font/inter_bold"/>
+
+
+            <ImageView
+                android:id="@+id/btn_increase_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_add_circle_24"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price here"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
