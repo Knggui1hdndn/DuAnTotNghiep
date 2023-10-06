@@ -13,7 +13,7 @@ class Product {
     public Product() {
     }
 
-    public Product(String _id, String name, String image, String price, String sold, String sale, String describe, String idCata) {
+    public Product(String _id,  String name, String image, String price, String sold, String sale, String describe, String idCata) {
         this._id = _id;
         this.name = name;
         this.image = image;
