@@ -23,17 +23,17 @@ class MainViewModel extends ViewModel {
     //Tạo LiveData để trả về dữ liệu bên view tránh postvalue bừa
     final LiveData<NetworkResult<MessageResponse>> OnLogin = _OnLogin;
 
-//Khởi tạo không có contruce cần @Inject ở contructer class hoặc khai báo ngoài nhưng vẫn cần @Inject và để public
+    //Khởi tạo không có contruce cần @Inject ở contructer class hoặc khai báo ngoài nhưng vẫn cần @Inject và để public
     private AuthRespo authRespo;
     private TokenManager tokenManager;
 
     @Inject //bắt buộc phải khởi tạo  với construct
-    public MainViewModel(  AuthRespo authRespo,TokenManager tokenManager) {
+    public MainViewModel(AuthRespo authRespo, TokenManager tokenManager) {
         this.authRespo = authRespo;
         this.tokenManager = tokenManager;
     }
 
-      void Login(LoginRequest loginRequest) {
+    void Login(LoginRequest loginRequest) {
         NetworkResult.handleCallApi(authRespo.Login(loginRequest), _OnLogin, null);
 //          NetworkResult.handleCallApi(authRespo.Login(loginRequest), _OnLogin, new ApiCallBack.OnSaveLocal() {
 //              @Override

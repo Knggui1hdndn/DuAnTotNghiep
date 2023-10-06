@@ -1,4 +1,4 @@
-package com.knd.duantotnghiep.phonetrackerlocation.core;
+package com.knd.duantotnghiep.duantotnghiep.core;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
