@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_forgot_pass"
+    app:startDestination="@id/forgotPassEnterInfoFragment">
+
+    <fragment
+        android:id="@+id/forgotPassEnterInfoFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.forgot_password.ForgotPassEnterInfoFragment"
+        android:label="Forgot Password"
+        tools:layout="@layout/frag_enter_email_phone">
+
+        <action
+            android:id="@+id/action_forgotPassEnterInfoFragment_to_createPasswordFragment"
+            app:destination="@id/createPasswordFragment"
+            app:enterAnim="@drawable/slide_in_anim"
+            app:exitAnim="@drawable/slide_out_anim">
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/createPasswordFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.forgot_password.CreatePasswordFragment"
+        android:label="Forgot Password"
+        app:enterAnim="@drawable/slide_in_anim"
+        app:exitAnim="@drawable/slide_out_anim"
+        tools:layout="@layout/fragment_create_password" />
+</navigation>

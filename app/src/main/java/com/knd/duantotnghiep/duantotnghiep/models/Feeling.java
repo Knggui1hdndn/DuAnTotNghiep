@@ -1,25 +1,19 @@
 package com.knd.duantotnghiep.duantotnghiep.models;
 
-enum TypeFeeling{
-    HAPPY,//vui
-    SAD,//buồn
-    LOVE,//yêu
-    ANGRY,//giận dữ
-}
 public class Feeling {
     private String _id;
     private String idEvaluate ;
     private String idUser ;
-    private TypeFeeling type ;
+    private String typeFeeling ;
 
     public Feeling() {
     }
 
-    public Feeling(String _id, String idEvaluate, String idUser, TypeFeeling type) {
+    public Feeling(String _id, String idEvaluate, String idUser, TypeFeeling typeFeeling) {
         this._id = _id;
         this.idEvaluate = idEvaluate;
         this.idUser = idUser;
-        this.type = type;
+        this.typeFeeling = typeFeeling.name();
     }
 
     public String getIdUser() {
@@ -30,12 +24,12 @@ public class Feeling {
         this.idUser = idUser;
     }
 
-    public TypeFeeling getType() {
-        return type;
+    public String getType() {
+        return typeFeeling;
     }
 
     public void setType(TypeFeeling type) {
-        this.type = type;
+        this.typeFeeling = type.name();
     }
 
     public String get_id() {

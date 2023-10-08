@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
-    private VB _binding;
+    protected VB  binding;
     private int requestCode = 0;
 
     @LayoutRes
@@ -24,7 +24,7 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(layout, container, false);
-        _binding = getViewBinding(rootView);
+        binding = getViewBinding(rootView);
         return rootView;
     }
 
@@ -44,13 +44,10 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
     public void initData() {}
 
-    public VB getBinding() {
-        return _binding;
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        _binding = null;
+         binding = null;
     }
 }
