@@ -1,5 +1,8 @@
 package com.knd.duantotnghiep.duantotnghiep.utils;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
@@ -19,25 +22,32 @@ public class NetworkResult<T> {
         liveData.postValue(new NetworkResult.Loading<>());
         call.enqueue(new Callback<T>() {
             @Override
-            public void onResponse(Call<T> call, Response<T> response) {
+            public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     T data = response.body();
                     if (onSaveLocal != null && response.headers().size() > 0) {
                         String auth = response.headers().get("Authorization");
                         onSaveLocal.save(auth);
                     }
+                    Log.d("errorBody3","Error"+response.errorBody());
 
                     liveData.postValue(new NetworkResult.Success<>(data));
                 } else if (response.errorBody() != null) {
+                    Log.d("errorBody2","Error"+response.errorBody());
                     try {
                         String errorBody = response.errorBody().string();
+                        Log.d("errorBody","Error"+errorBody);
                         MessageResponse messageResponse = new Gson().fromJson(errorBody, MessageResponse.class);
-                        liveData.postValue(new NetworkResult.Error(messageResponse.getMessage()));
+                        Log.d("errorBody","Error"+messageResponse.getError());
+
+                        liveData.postValue(new NetworkResult.Error<>(messageResponse.getError()));
                     } catch (IOException e) {
-                        liveData.postValue(new NetworkResult.Error("Error parsing error response"));
+                        liveData.postValue(new NetworkResult.Error<>("Error parsing error response"));
                     }
                 } else {
-                    liveData.postValue(new NetworkResult.Error("Something Went Wrong"));
+                    Log.d("errorBody1","Error"+response.errorBody());
+
+                    liveData.postValue(new NetworkResult.Error<>("Something Went Wrong"));
                 }
             }
 

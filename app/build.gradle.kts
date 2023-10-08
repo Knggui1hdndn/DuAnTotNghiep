@@ -1,7 +1,9 @@
 plugins {
     id("com.android.application")
     id("com.google.dagger.hilt.android")
-    id("org.jetbrains.kotlin.android")
+
+    id ("androidx.navigation.safeargs")
+
 }
 
 android {
@@ -38,6 +40,14 @@ android {
 }
 
 dependencies {
+    //Navigation
+    implementation("androidx.navigation:navigation-fragment:2.7.4")
+    implementation("androidx.navigation:navigation-ui:2.7.4")
+    //google
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.airbnb.android:lottie:6.0.0")
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     //hilt-dagger
     implementation ("com.google.dagger:hilt-android:2.44")

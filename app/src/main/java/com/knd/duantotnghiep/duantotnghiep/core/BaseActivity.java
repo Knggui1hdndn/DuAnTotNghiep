@@ -1,11 +1,13 @@
 package com.knd.duantotnghiep.duantotnghiep.core;
 
 
-
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.LayoutRes;
@@ -20,11 +22,14 @@ public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActi
 
     protected abstract BD getViewBinding();
 
-    protected void initView() {}
+    protected void initView() {
+    }
 
-    protected void initObserver() {}
+    protected void initObserver() {
+    }
 
-    protected void initData() {}
+    protected void initData() {
+    }
 
     @MenuRes
     protected int getMenu() {
@@ -49,7 +54,7 @@ public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActi
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(enableDisplayHome);
             getSupportActionBar().setHomeAsUpIndicator(draw);
-            getSupportActionBar(). setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
 
@@ -73,6 +78,10 @@ public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActi
             return true;
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public  void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
