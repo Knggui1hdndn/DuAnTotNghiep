@@ -13,6 +13,14 @@ class Product {
     public Product() {
     }
 
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
     public Product(String _id, String name, String image, String price, String sold, String sale, String describe, String idCata) {
         this._id = _id;
         this.name = name;

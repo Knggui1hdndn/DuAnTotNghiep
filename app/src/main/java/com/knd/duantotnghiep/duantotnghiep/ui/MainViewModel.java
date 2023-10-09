@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.knd.duantotnghiep.duantotnghiep.models.LoginRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
-import com.knd.duantotnghiep.duantotnghiep.respository.AuthRespo;
-import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
+import com.knd.duantotnghiep.duantotnghiep.respository.AuthResponse;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 import com.knd.duantotnghiep.duantotnghiep.utils.TokenManager;
 
@@ -24,22 +22,22 @@ class MainViewModel extends ViewModel {
     final LiveData<NetworkResult<MessageResponse>> OnLogin = _OnLogin;
 
     //Khởi tạo không có contruce cần @Inject ở contructer class hoặc khai báo ngoài nhưng vẫn cần @Inject và để public
-    private AuthRespo authRespo;
+    private AuthResponse authRespo;
     private TokenManager tokenManager;
 
     @Inject //bắt buộc phải khởi tạo  với construct
-    public MainViewModel(AuthRespo authRespo, TokenManager tokenManager) {
+    public MainViewModel(AuthResponse authRespo, TokenManager tokenManager) {
         this.authRespo = authRespo;
         this.tokenManager = tokenManager;
     }
 
-    void Login(LoginRequest loginRequest) {
-        NetworkResult.handleCallApi(authRespo.Login(loginRequest), _OnLogin, null);
-//          NetworkResult.handleCallApi(authRespo.Login(loginRequest), _OnLogin, new ApiCallBack.OnSaveLocal() {
-//              @Override
-//              public void save(String value) {//Thực hiện save token nếu không save thì truyền và là null vào tham số
-//                  tokenManager.saveToken(value);
-//              }
-//          });
-    }
+//    void Login(SignInRequest loginRequest) {
+//        authRespo.Login(new s("ok",TypeFeeling.SAD.name()));
+////          NetworkResult.handleCallApi(authRespo.Login(loginRequest), _OnLogin, new ApiCallBack.OnSaveLocal() {
+////              @Override
+////              public void save(String value) {//Thực hiện save token nếu không save thì truyền và là null vào tham số
+////                  tokenManager.saveToken(value);
+////              }
+////          });
+//    }
 }
