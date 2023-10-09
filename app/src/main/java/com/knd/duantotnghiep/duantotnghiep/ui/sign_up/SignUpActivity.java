@@ -158,7 +158,6 @@ public class SignUpActivity extends HandleSignUpGoogle {
                         bundle.putSerializable("SignUpRequest", signUpViewModel.signUpRequest.getValue());
                         confirmOtpBottomSheet.setArguments(bundle);
                         confirmOtpBottomSheet.show(getSupportFragmentManager(), confirmOtpBottomSheet.getClass().getName());
-
                     }
                 }
 
