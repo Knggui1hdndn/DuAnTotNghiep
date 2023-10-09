@@ -39,10 +39,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.sign_up.SignUpActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.forgot_password.ForgotPasswordActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.SignInActivity"
             android:exported="false" />
