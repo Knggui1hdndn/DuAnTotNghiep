@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.Fragments.ClothesFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="30dp"
+            android:text="Clothes"
+            android:textSize="38sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+<ScrollView
+    android:id="@+id/srcoll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:text="All"
+            android:layout_marginLeft="11dp"
+            android:textSize="10sp"
+            android:background="#0000"
+            android:textColor="#000000"/>
+        <Button
+            android:layout_marginLeft="10dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Polo and T-shirt"
+            android:textSize="10sp"
+            android:background="#0000"
+            android:textColor="#000000"/>
+        <Button
+            android:layout_marginLeft="10dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Suit"
+            android:textSize="10sp"
+            android:background="#0000"
+            android:textColor="#000000"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Out wear"
+            android:textSize="10sp"
+            android:background="#0000"
+            android:textColor="#000000"/>
+    </LinearLayout>
+    ></ScrollView>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_marginTop="30sp"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
+    </LinearLayout>
+
+</LinearLayout>
