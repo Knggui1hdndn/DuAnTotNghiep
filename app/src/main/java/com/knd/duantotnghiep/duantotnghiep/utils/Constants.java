@@ -12,4 +12,5 @@ public class Constants {
     @Nullable
     public static final String USER_TOKEN = "USER_TOKEN";
     public static final String BASE_URL = "http://192.168.1.181:3000/";
+    public static final String NAME_DATABASE = "NAME_DATABASE";
 }
