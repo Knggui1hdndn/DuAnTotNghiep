@@ -1,6 +1,6 @@
 package com.knd.duantotnghiep.duantotnghiep.models;
 
-class Product {
+public class Product {
     private String _id;
     private String name;
     private String image;
