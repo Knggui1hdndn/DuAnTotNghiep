@@ -1,12 +1,13 @@
 package com.knd.duantotnghiep.duantotnghiep.models;
 
+ 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
  public class Product {
 
      private String _id;
-    private String name;
+     private String name;
     private String image;
     private String price;
     private String sold;
