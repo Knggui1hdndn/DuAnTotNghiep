@@ -2,4 +2,9 @@
     <string name="app_name">DuAnTotNghiep</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="checkout">Checkout</string>
+
+    <string name="default_web_client_id">470422080037-a8nm0h5fs6tqo1p6p0chpv2co02jirvb.apps.googleusercontent.com</string>
+
 </resources>
