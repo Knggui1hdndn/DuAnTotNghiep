@@ -51,6 +51,8 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     //hilt-dagger
     implementation ("com.google.dagger:hilt-android:2.44")
+    implementation("androidx.room:room-common:2.5.2")
+    implementation("androidx.room:room-runtime:2.5.2")
     annotationProcessor ("com.google.dagger:hilt-compiler:2.44")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -64,6 +66,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    annotationProcessor("androidx.room:room-compiler:2.5.2")
 
 
 }

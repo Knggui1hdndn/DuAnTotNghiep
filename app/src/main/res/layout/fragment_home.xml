@@ -22,6 +22,7 @@
             android:textSize="38sp"
             android:textStyle="bold" />
 
+
         <Button
             android:id="@+id/btn_sreach"
             android:background="@drawable/baseline_search_24"

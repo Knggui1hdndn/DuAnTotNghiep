@@ -16,43 +16,48 @@
         android:theme="@style/Theme.DuAnTotNghiep"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <provider android:name=".Provider.MySuggestionProvider"
+            android:authorities="com.example.MySuggestionProvider" />
         <activity
- 
+            android:name=".ui.SearchActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.ProductActivity"
             android:exported="false" />
-       <activity
+        <activity
             android:name=".ui.CreateNewPassActivity"
-            android:exported="false" />
-       <activity
-            android:name=".ui.ShoppingBagActivity"
-            android:exported="false" />
- 
-        <activity
-            android:name=".ui.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SignInActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
- 
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <provider
+            android:authorities="com.knd.duantotnghiep.duantotnghiep.Provider"
+            android:name=".Provider.MySuggestionProvider"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
     </application>
+
+
 
 </manifest>
