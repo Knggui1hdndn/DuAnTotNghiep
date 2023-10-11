@@ -37,15 +37,5 @@ SearchView searchView;
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.search_menu, menu);
-//
-//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) menu.findItem(R.id.search_view).getActionView();
-//
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setSubmitButtonEnabled(true);
-//        return true;
-//    }
+
 }
