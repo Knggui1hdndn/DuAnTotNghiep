@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,48 +20,49 @@
 
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/rcv_shopping_bag"
+           android:layout_marginTop="100sp"
            android:layout_width="match_parent"
-           android:layout_height="500dp"
+           android:layout_height="480sp"
+           android:clipToPadding="false"
+           android:paddingStart="8dp"
+           android:paddingEnd="8dp"
            tools:listitem="@layout/item_layout_shopping_bag" />
 
-       <LinearLayout
-           android:layout_marginTop="30dp"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-              android:orientation="horizontal">
+
 
               <TextView
+                  android:layout_marginTop="600sp"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                      android:text="Total"
+                  android:layout_marginLeft="10sp"
                      android:textStyle="bold"
                      android:textSize="25dp"
                   android:fontFamily="@font/inter_bold"/>
 
-              <TextView
-                  android:id="@+id/tv_product_price"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="230dp"
-                  android:fontFamily="@font/inter_bold"
-                  android:text="Price here"
-                  android:textColor="@android:color/holo_red_light"
-                  android:textSize="20dp"
-                  android:textStyle="bold" />
 
+       <TextView
+           android:id="@+id/tv_product_price"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="300dp"
+           android:layout_marginTop="600sp"
+           android:fontFamily="@font/inter_bold"
 
-       </LinearLayout>
-
+           android:text="Price here"
+           android:textColor="@android:color/holo_red_light"
+           android:textSize="20sp"
+           android:textStyle="bold" />
 
        <androidx.appcompat.widget.AppCompatButton
            android:layout_width="250dp"
            android:layout_height="wrap_content"
            android:layout_gravity="center"
-           android:layout_marginTop="20dp"
+           android:layout_marginTop="320sp"
            android:background="@color/black"
            android:fontFamily="@font/inter_bold"
            android:text="Checkout"
            android:textColor="@color/white"
            android:textStyle="bold" />
 
-</LinearLayout>
+</FrameLayout>
