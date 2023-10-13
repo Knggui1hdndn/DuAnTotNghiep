@@ -37,10 +37,11 @@ android {
         viewBinding = true
         dataBinding = true
     }
+    configurations {
+        implementation.get().exclude(mapOf("group" to "org.jetbrains", "module" to "annotations"))
+    }
 }
-
 dependencies {
-    implementation ("com.paulrybitskyi.persistentsearchview:persistentsearchview:1.1.4")
 
     //Navigation
     implementation("androidx.navigation:navigation-fragment:2.7.4")
@@ -50,17 +51,15 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.0.0")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.squareup.picasso:picasso:2.8")
-
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
-    //hilt-dagger
+     //hilt-dagger
     implementation("com.google.dagger:hilt-android:2.44")
-    annotationProcessor("com.google.dagger:hilt-compiler:2.44")
+     annotationProcessor("com.google.dagger:hilt-compiler:2.44")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.makeramen:roundedimageview:2.3.0")
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
-    implementation("com.facebook.shimmer:shimmer:0.5.0")
+     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -68,5 +67,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-
+    implementation("androidx.room:room-runtime:2.5.0")
+    annotationProcessor("androidx.room:room-compiler:2.5.0")
 }

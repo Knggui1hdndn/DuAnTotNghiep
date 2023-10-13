@@ -28,8 +28,8 @@ public class Network {
                 .callTimeout(3, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS);
     }
-
-
+    @Singleton
+    @Provides
     public OkHttpClient provideOkHttpClientInterceptor(
             AuthInterceptor interceptor,
             OkHttpClient.Builder okHttpClientBuilder

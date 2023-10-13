@@ -18,7 +18,7 @@ public interface SearchDao {
     void deleteSearch(SearchLocal searchLocal);
 
     @Query("SELECT * FROM SearchLocal")
-    List<Product> getListSearch();
+    List<SearchLocal> getListSearch();
 //    @Query("SELECT * FROM SearchLocal WHERE name LIKE ( :searchQuery) ORDER BY _id")
 //    LiveData<List<Product>> getSearchDatabase(final String searchQuery);
 

@@ -12,6 +12,7 @@ import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivityLoginBinding;
  import com.knd.duantotnghiep.duantotnghiep.models.SearchLocal;
+import com.knd.duantotnghiep.duantotnghiep.ui.sign_up.SignUpActivity;
 
 import javax.inject.Inject;
 
