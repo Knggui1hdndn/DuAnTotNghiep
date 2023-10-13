@@ -101,7 +101,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
 
             @Override
             public void handleError(String error) {
-                handleUIVisibility(View.VISIBLE, View.INVISIBLE, View.VISIBLE);
+                if (binding.search.getText().toString().length() > 0)     handleUIVisibility(View.VISIBLE, View.INVISIBLE, View.VISIBLE);
             }
 
             @Override
