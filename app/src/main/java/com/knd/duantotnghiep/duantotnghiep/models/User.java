@@ -1,36 +1,37 @@
 package com.knd.duantotnghiep.duantotnghiep.models;
 
-enum TypeRole{
-ADMIN,USER
+enum RoleType {
+    ADMIN, USER
 }
-enum AuthType{
-    LOCAL,GOOGLE
-}
-public class User {
 
+enum AuthType {
+    LOCAL, GOOGLE
+}
+
+public class User {
     private String _id;
     private String name;
     private String avatar;
-    private String [] address;
+    private String[] address;
     private String phoneNumber;
     private String password;
-    private AuthType authType = AuthType.LOCAL;
+    private String authType = AuthType.LOCAL.name();
     private String authGoogleId = null;
-    private TypeRole role =TypeRole.USER;
+    private String roleType = RoleType.USER.name();
 
     public User() {
     }
 
-    public User(String _id, String name, String avatar, String[] address, String phoneNumber, String password, AuthType authType, String authGoogleId, TypeRole role) {
+    public User(String _id, String name, String avatar, String[] address, String phoneNumber, String password, AuthType authType, String authGoogleId, RoleType typeRole) {
         this._id = _id;
         this.name = name;
         this.avatar = avatar;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.authType = authType;
+        this.authType = authType.name();
         this.authGoogleId = authGoogleId;
-        this.role = role;
+        this.roleType = typeRole.name();
     }
 
     public String get_id() {
@@ -81,12 +82,12 @@ public class User {
         this.password = password;
     }
 
-    public AuthType getAuthType() {
+    public String getAuthType() {
         return authType;
     }
 
     public void setAuthType(AuthType authType) {
-        this.authType = authType;
+        this.authType = authType.name();
     }
 
     public String getAuthGoogleId() {
@@ -97,11 +98,11 @@ public class User {
         this.authGoogleId = authGoogleId;
     }
 
-    public TypeRole getRole() {
-        return role;
+    public String getRole() {
+        return roleType;
     }
 
-    public void setRole(TypeRole role) {
-        this.role = role;
+    public void setRole(RoleType role) {
+        this.roleType = role.name();
     }
 }

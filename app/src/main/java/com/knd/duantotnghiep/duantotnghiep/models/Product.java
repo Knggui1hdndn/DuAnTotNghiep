@@ -1,8 +1,13 @@
 package com.knd.duantotnghiep.duantotnghiep.models;
 
-class Product {
-    private String _id;
-    private String name;
+ 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+ public class Product {
+
+     private String _id;
+     private String name;
     private String image;
     private String price;
     private String sold;
@@ -13,8 +18,19 @@ class Product {
     public Product() {
     }
 
-    public Product(String _id,  String name, String image, String price, String sold, String sale, String describe, String idCata) {
-        this._id = _id;
+      public String getDescribe() {
+         return describe;
+     }
+
+     public void setDescribe(String describe) {
+         this.describe = describe;
+     }
+
+
+
+
+    public Product(String _id, String name, String image, String price, String sold, String sale, String describe, String idCata) {
+         this._id = _id;
         this.name = name;
         this.image = image;
         this.price = price;

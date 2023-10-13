@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:usesCleartextTraffic="true"
         android:name=".application.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +14,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAnTotNghiep"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ui.pay.PaymentConfirmationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MyOderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CreateNewPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sign_up.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.forgot_password.ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
@@ -24,6 +62,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

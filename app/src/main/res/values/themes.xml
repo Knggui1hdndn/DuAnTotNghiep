@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.DuAnTotNghiep" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.DuAnTotNghiep" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+ <item name="colorPrimaryDark">@color/white</item> -->
     </style>
-
+    <style name="edt_otp">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">1</item>
+         <item name="android:textStyle">bold</item>
+    </style>
     <style name="Theme.DuAnTotNghiep" parent="Base.Theme.DuAnTotNghiep" />
 </resources>
