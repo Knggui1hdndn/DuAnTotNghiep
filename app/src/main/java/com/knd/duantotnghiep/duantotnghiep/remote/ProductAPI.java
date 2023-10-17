@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 public interface ProductAPI {
-    ProductAPI api = new Retrofit.Builder().baseUrl("http://localhost:192.168.1.181").addConverterFactory(GsonConverterFactory.create()).build().create(ProductAPI.class);
+    ProductAPI api = new Retrofit.Builder().baseUrl("http:192.168.1.181:8000").addConverterFactory(GsonConverterFactory.create()).build().create(ProductAPI.class);
 
 
     @GET("/pro")

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.main.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_clothesFragment"
+            app:destination="@id/clothesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clothesFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.main.ClothesFragment"
+        android:label="fragment_clothes"
+        tools:layout="@layout/fragment_clothes" >
+        <action
+            android:id="@+id/action_clothesFragment_to_shoppingBagFragment"
+            app:destination="@id/shoppingBagFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingBagFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.Fragments.ShoppingBagFragment"
+        android:label="fragment_shopping_bag"
+        tools:layout="@layout/fragment_shopping_bag" >
+        <action
+            android:id="@+id/action_shoppingBagFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.Fragments.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" >
+        <action
+            android:id="@+id/action_wishListFragment_to_forgotPasswordActivity"
+            app:destination="@id/forgotPasswordActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/forgotPasswordActivity"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.forgot_password.ForgotPasswordActivity"
+        android:label="activity_forgot_password"
+        tools:layout="@layout/activity_forgot_password" />
+</navigation>
