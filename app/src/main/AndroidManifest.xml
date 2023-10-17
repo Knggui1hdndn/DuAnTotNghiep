@@ -16,7 +16,9 @@
         android:theme="@style/Theme.DuAnTotNghiep"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.BillActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.pay.PaymentConfirmationActivity"
             android:exported="false" />

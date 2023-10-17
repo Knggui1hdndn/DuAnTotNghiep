@@ -18,37 +18,55 @@
         android:fontFamily="@font/inter_bold"
         android:textStyle="normal|bold"
         android:textColor="#000000"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imgProfile"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher_background"
+        android:background="@drawable/circular_background"
+        android:scaleType="centerCrop"/>
 
-    <EditText
-        android:id="@+id/edFistName"
-        android:layout_width="350dp"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fist Name"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"/>
-    <EditText
-        android:id="@+id/edLastName"
-        android:layout_width="350dp"
+        android:text="To Dang Dat"
+        android:id="@+id/tvNameProfile"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textAllCaps="true"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Last Name"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:inputType="textPassword"/>
-    <EditText
-        android:id="@+id/edYourNumber"
-        android:layout_width="350dp"
+        android:text="0866084512"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:id="@+id/tvPhoneProfile"
+        />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Your number"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"/>
-    <EditText
-        android:id="@+id/edGmail"
-        android:layout_width="350dp"
+        android:id="@+id/tvEmailProfile"
+        android:text="dattdph25953@fpt.edu.vn"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Gmail"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:inputType="textPassword"/>
+        android:id="@+id/tvAddressProfile"
+        android:text="Hợp Tiến - Mỹ Đức - Hà Nội"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"/>
+
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="250dp"
@@ -57,7 +75,7 @@
         android:layout_marginTop="55dp"
         android:background="@color/black"
         android:fontFamily="@font/inter_bold"
-        android:text="Save"
+        android:text="Up date"
         android:textColor="@color/white"
         android:textStyle="bold"
         />
