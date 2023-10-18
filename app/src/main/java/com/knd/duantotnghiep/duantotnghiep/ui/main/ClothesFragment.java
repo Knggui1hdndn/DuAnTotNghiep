@@ -7,13 +7,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.adapter.ProductAdapter;
+import com.knd.duantotnghiep.duantotnghiep.adapter.ViewPageAdapter;
 import com.knd.duantotnghiep.duantotnghiep.models.Product;
 import com.knd.duantotnghiep.duantotnghiep.remote.ProductAPI;
 
@@ -26,11 +30,11 @@ import retrofit2.Response;
 
 public class ClothesFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    private TabLayout tabLayout;
 
-    private ProductAdapter adapter;
+    private ViewPager2 viewPager2;
 
-    private ArrayList<Product> list;
+    private ViewPageAdapter viewPageAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
 
@@ -63,28 +67,50 @@ public class ClothesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.categoriesRecyclerView);
-        getProduct();
-
-    }
-    public void getProduct(){
-        ProductAPI.api.getProduct().enqueue(new Callback<ArrayList<Product>>() {
+        tabLayout = view.findViewById(R.id.idTabLayout);
+        viewPager2 = view.findViewById(R.id.idViewPager);
+        viewPageAdapter =new ViewPageAdapter(getParentFragment());
+        viewPager2.setAdapter(viewPageAdapter);
+        TabLayoutMediator mediator =new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
-            public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
-                if(response.body()!=null){
-                    list = new ArrayList<>();
-                    list = response.body();
-                    adapter = new ProductAdapter(list);
-                    LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(manager);
-                    recyclerView.setAdapter(adapter);
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position){
+                    case 0:
+                        tab.setText("All");
+                        break;
+                    case 1:
+                        tab.setText("Polo and T-shirt");
+                        break;
+                    case 2:
+                        tab.setText("Suit");
+                        break;
+                    case 3:
+                        tab.setText("Out wear");
+                        break;
                 }
             }
-
-            @Override
-            public void onFailure(Call<ArrayList<Product>> call, Throwable t) {
-
-            }
         });
+        mediator.attach();
     }
-}
+
+    }
+//    public void getProduct(){
+//        ProductAPI.api.getProduct().enqueue(new Callback<ArrayList<Product>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
+//                if(response.body()!=null){
+//                    list = new ArrayList<>();
+//                    list = response.body();
+//                    adapter = new ProductAdapter(list);
+//                    LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
+//                    recyclerView.setLayoutManager(manager);
+//                    recyclerView.setAdapter(adapter);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<Product>> call, Throwable t) {
+//
+//            }
+//        });
+//    }

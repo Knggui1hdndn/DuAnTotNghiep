@@ -70,7 +70,7 @@ public class ClothesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         tabLayout = view.findViewById(R.id.idTabLayout);
         viewPager2 = view.findViewById(R.id.idViewPager);
-        viewPageAdapter =new ViewPageAdapter(getActivity());
+        viewPageAdapter =new ViewPageAdapter(getParentFragment());
         viewPager2.setAdapter(viewPageAdapter);
         TabLayoutMediator mediator =new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
