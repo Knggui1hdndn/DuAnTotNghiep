@@ -1,90 +1,98 @@
 package com.knd.duantotnghiep.duantotnghiep.ui.main;
 
-import android.os.Bundle;
+import androidx.lifecycle.ViewModelProvider;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.knd.duantotnghiep.duantotnghiep.R;
-import com.knd.duantotnghiep.duantotnghiep.adapter.ProductAdapter;
-import com.knd.duantotnghiep.duantotnghiep.models.Product;
-import com.knd.duantotnghiep.duantotnghiep.remote.ProductAPI;
+import com.knd.duantotnghiep.duantotnghiep.broadcast.NetworkMonitor;
+import com.knd.duantotnghiep.duantotnghiep.core.BaseFragment;
+import com.knd.duantotnghiep.duantotnghiep.databinding.FragmentClothesBinding;
+import com.knd.duantotnghiep.duantotnghiep.models.Category;
+import com.knd.duantotnghiep.duantotnghiep.models.CategoryResponse;
+import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 
-import java.util.ArrayList;
+import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
-public class ClothesFragment extends Fragment {
-
-    private RecyclerView recyclerView;
-
-    private ProductAdapter adapter;
-
-    private ArrayList<Product> list;
-
-    // TODO: Rename parameter arguments, choose names that match
-
+@AndroidEntryPoint
+public class ClothesFragment extends BaseFragment<FragmentClothesBinding> {
 
     public ClothesFragment() {
-        // Required empty public constructor
+        super(R.layout.fragment_clothes);
     }
 
+    private ClothesViewModel clothesViewModel;
+    private CategoryResponse categoryResponse;
+    @Inject
+    public NetworkMonitor networkMonitor;
+    private ClothesViewPager clothesViewPager;
 
-    // TODO: Rename and change types and number of parameters
-    public static ClothesFragment newInstance() {
-        ClothesFragment fragment = new ClothesFragment();
-
-        return fragment;
+    @Override
+    public void initData() {
+        clothesViewModel = new ViewModelProvider(requireActivity()).get(ClothesViewModel.class);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void initView() {
+        binding.viewPager2.setOffscreenPageLimit(3);
+        binding.mRefreshLayout.setOnRefreshListener(() -> {
+            clothesViewModel.getCategories();
+        });
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clothes, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.categoriesRecyclerView);
-        getProduct();
-
-    }
-    public void getProduct(){
-        ProductAPI.api.getProduct().enqueue(new Callback<ArrayList<Product>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
-                if(response.body()!=null){
-                    list = new ArrayList<>();
-                    list = response.body();
-                    adapter = new ProductAdapter(list);
-                    LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(manager);
-                    recyclerView.setAdapter(adapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Product>> call, Throwable t) {
-
+    public void initObserver() {
+        networkMonitor.observe(requireActivity(), aBoolean -> {
+            if (aBoolean) {
+                clothesViewModel.getCategories();
+            } else {
+                showMessage("Please check your connection and try again");
             }
         });
+
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(binding.tabLayout, binding.viewPager2, (tab, position) -> {
+            tab.setText(categoryResponse.get(position).getCategory());
+        });
+
+        clothesViewModel.getCategories.observe(requireActivity(), arrayListNetworkResult -> {
+            ApiCallBack.handleResult(arrayListNetworkResult, new ApiCallBack.HandleResult<>() {
+                @Override
+                public void handleSuccess(CategoryResponse data) {
+                    categoryResponse = data;
+                    if (isAdded() && clothesViewPager == null) {
+                        binding.mRefreshLayout.setEnabled(false);
+                        clothesViewPager = new ClothesViewPager(requireActivity().getSupportFragmentManager(), getLifecycle(), categoryResponse);
+                        binding.viewPager2.setAdapter(clothesViewPager);
+                        if (!tabLayoutMediator.isAttached()) {
+                            tabLayoutMediator.attach();
+                        }
+                    }
+                }
+
+                @Override
+                public void handleError(String error) {
+                    showMessage(error);
+                }
+
+                @Override
+                public void handleLoading() {
+
+                }
+            });
+        });
+    }
+
+    @Override
+    public FragmentClothesBinding getViewBinding(View view) {
+        return FragmentClothesBinding.bind(view);
     }
 }

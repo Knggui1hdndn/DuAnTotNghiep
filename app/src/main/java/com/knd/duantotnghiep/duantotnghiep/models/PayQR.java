@@ -9,14 +9,44 @@ public class PayQR {
     private String idOrder;
     private String url;
     private String note;
+    private Double  totalAmount;
     private long timeCreateAt;
     private long expiration;
+private long timeCurrent;
+
+    public long getTimeCurrent() {
+        return timeCurrent;
+    }
+
+    public void setTimeCurrent(long timeCurrent) {
+        this.timeCurrent = timeCurrent;
+    }
 
     public PayQR() {
         // Default constructor
     }
 
- 
+
+    @Override
+    public String toString() {
+        return "PayQR{" +
+                "_id='" + _id + '\'' +
+                ", idUser='" + idUser + '\'' +
+                ", idOrder='" + idOrder + '\'' +
+                ", url='" + url + '\'' +
+                ", note='" + note + '\'' +
+                ", timeCreateAt=" + timeCreateAt +
+                ", expiration=" + expiration +
+                '}';
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
     public String get_id() {
         return _id;

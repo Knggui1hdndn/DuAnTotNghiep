@@ -20,7 +20,7 @@ import androidx.viewbinding.ViewBinding;
 public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActivity {
 
 
-    protected abstract BD getViewBinding();
+    public abstract BD getViewBinding();
 
     protected void initView() {
     }
@@ -36,7 +36,7 @@ public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActi
         return -1;
     }
 
-    protected BD binding;
+    public BD binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public abstract class BaseActivity<BD extends ViewBinding> extends AppCompatActi
 
     }
 
-    protected void setUpToolBar(Toolbar toolbar, boolean enableDisplayHome, Drawable draw) {
+    public void setUpToolBar(Toolbar toolbar, boolean enableDisplayHome, Drawable draw) {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(enableDisplayHome);

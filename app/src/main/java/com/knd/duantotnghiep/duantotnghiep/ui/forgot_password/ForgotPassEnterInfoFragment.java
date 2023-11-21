@@ -19,6 +19,7 @@ import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseFragment;
 import com.knd.duantotnghiep.duantotnghiep.databinding.FragEnterEmailPhoneBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
+import com.knd.duantotnghiep.duantotnghiep.models.OTP;
 import com.knd.duantotnghiep.duantotnghiep.ui.dialog.ConfirmOtpBottomSheet;
 import com.knd.duantotnghiep.duantotnghiep.ui.dialog.ConfirmOtpCallback;
 import com.knd.duantotnghiep.duantotnghiep.ui.dialog.DialogLoading;
@@ -52,7 +53,7 @@ public class ForgotPassEnterInfoFragment extends BaseFragment<FragEnterEmailPhon
 
             @Override
             public void onConfirm(String otp) {
-                signUpViewModel.verificationOtp(type, otp);
+                signUpViewModel.verificationOtp(new OTP(type,  binding.edtAddress.getEditText().getText().toString(), null));
             }
 
             @Override
@@ -138,12 +139,12 @@ public class ForgotPassEnterInfoFragment extends BaseFragment<FragEnterEmailPhon
             binding.edtAddress.setError("Do not leave blank input");
         } else {
             if (Patterns.PHONE.matcher(address).matches()) {
-                signUpViewModel.sendOtp("phone", address);
+                signUpViewModel.sendOtp(new OTP("phone", address,null));
                 type = "phone";
             }
 
             if (Patterns.EMAIL_ADDRESS.matcher(address).matches()) {
-                signUpViewModel.sendOtp("email", address);
+                signUpViewModel.sendOtp(new OTP("email", address,null));
                 type = "email";
             }
         }

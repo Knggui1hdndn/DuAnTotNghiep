@@ -15,7 +15,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 
 public class UserPreferencesManager {
     private SharedPreferences sharedPreferences;
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @Inject
     public UserPreferencesManager(@ApplicationContext Context context) {

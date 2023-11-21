@@ -1,131 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingTop="35dp"
-    android:paddingBottom="35dp"
-    android:paddingLeft="35dp"
-    android:weightSum="12"
-    android:background="@drawable/background_item">
-    
-    <ImageView
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="0dp"
-        android:layout_weight="4.5"
-        android:layout_height="170dp"
-        android:id="@+id/image_product"/>
-
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="7"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_product_name"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="name here"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_bold"/>
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/baseline_cancel_24" />
-
-        </LinearLayout>
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Size: "
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/inter_bold"
-            android:textColor="@android:color/darker_gray"
-            />
-
-    <TextView
-        android:id="@+id/tv_product_size"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Size here"
-        android:textSize="18dp"
-        android:fontFamily="@font/inter_bold"
-        android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
-        />
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/checked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checked"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_cancel_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Nguyễn Duy Khang"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/close" />
+
+        <TextView
+            android:id="@+id/txtClassify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Classify"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+        <TextView
+            android:id="@+id/txtTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+
+            android:layout_marginTop="15dp"
+            android:text="đ200.000"
+            android:textColor="@color/click"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtClassify" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+
+            android:text="Remaining:"
+             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txtRemaining" />
+
+        <TextView
+            android:id="@+id/txtRemaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15"
+            android:textColor="#FF0000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/mEditCart"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalAmount">
 
             <ImageView
-                android:id="@+id/btn_decrease_product"
+                android:id="@+id/minus"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/stroke"
+                android:padding="3dp"
+                android:src="@drawable/baseline_horizontal_rule_24" />
+
+            <TextView
+                android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_remove_circle_outline_24"
-                android:layout_marginRight="10dp"/>
-
-            <EditText
-                android:id="@+id/ed_product_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:paddingRight="20dp"
-                android:fontFamily="@font/inter_bold"/>
-
+                android:layout_gravity="center"
+                android:text="26"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <ImageView
-                android:id="@+id/btn_increase_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_add_circle_24"
-                android:layout_marginLeft="10dp"/>
+                android:id="@+id/plus"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/stroke"
+                android:backgroundTint="@color/black"
+                android:padding="3dp"
+                android:src="@drawable/baseline_add_24" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_product_price"
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/txtError"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Price here"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:textColor="@android:color/holo_red_light"
-            android:layout_gravity="right"/>
+            android:textColor="@color/click"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mEditCart" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

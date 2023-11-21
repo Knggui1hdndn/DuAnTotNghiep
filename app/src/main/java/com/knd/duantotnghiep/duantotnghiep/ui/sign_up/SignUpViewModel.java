@@ -7,21 +7,23 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
+import com.knd.duantotnghiep.duantotnghiep.models.OTP;
 import com.knd.duantotnghiep.duantotnghiep.models.SignUpRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.User;
-import com.knd.duantotnghiep.duantotnghiep.respository.AuthResponse;
+import com.knd.duantotnghiep.duantotnghiep.respository.AuthRepository;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
+import retrofit2.http.Body;
 
 @HiltViewModel
 public class SignUpViewModel extends ViewModel {
-    private AuthResponse authResponse;
+    private AuthRepository authResponse;
 
     @Inject
-    public SignUpViewModel(AuthResponse authResponse) {
+    public SignUpViewModel(AuthRepository authResponse) {
         this.authResponse = authResponse;
         sendOtp = authResponse.sendOtp;
         signUpLocal = authResponse.signUpLocal;
@@ -67,7 +69,9 @@ public class SignUpViewModel extends ViewModel {
                     getValue(txtAddress),
                     getValue(txtPhoneNumber));
             signUpRequest.setValue(signUpRequest1);
-            sendOtp("phone", txtPhoneNumber.getValue());
+            String type;
+            type = "phone";
+            sendOtp(new OTP(type, getValue(txtPhoneNumber), null));
         } else {
             setValueIfNotNull(txtPhoneNumber);
             setValueIfNotNull(txtPassword);
@@ -85,18 +89,19 @@ public class SignUpViewModel extends ViewModel {
         return mutableLiveData.getValue();
     }
 
-    public void sendOtp(String type, String address) {
-        authResponse.sendOtp(type, address);
+    public void sendOtp(OTP otp) {
+        authResponse.sendOtp(otp);
     }
-    public void verificationOtp(String type, String address) {
-        authResponse.verificationOTP(type, address);
+
+    public void verificationOtp(OTP otp) {
+        authResponse.verificationOTP(otp);
     }
 
     public void signUpLocal(SignUpRequest signUpRequest, String otp) {
         authResponse.signUpLocal(signUpRequest, otp);
     }
 
-    public void authenticateGoogle(String idToken) {
-        authResponse.authenticateGoogle(idToken);
+    public void authenticateGoogle(String idToken,String s) {
+        authResponse.authenticateGoogle(idToken,s);
     }
 }

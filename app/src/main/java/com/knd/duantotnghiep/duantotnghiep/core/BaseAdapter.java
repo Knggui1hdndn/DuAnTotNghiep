@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
@@ -33,6 +34,7 @@ public abstract class BaseAdapter<VB extends ViewBinding, T> extends RecyclerVie
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         binding = getItemBinding(parent);
@@ -51,6 +53,7 @@ public abstract class BaseAdapter<VB extends ViewBinding, T> extends RecyclerVie
 
     @Override
     public int getItemCount() {
+        if (listData==null) return 0;
         return listData.size();
     }
 

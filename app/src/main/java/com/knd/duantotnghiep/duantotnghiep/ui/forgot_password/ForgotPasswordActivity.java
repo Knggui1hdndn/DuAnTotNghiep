@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class ForgotPasswordActivity extends BaseActivity<ActivityForgotPasswordBinding> {
 
     @Override
-    protected ActivityForgotPasswordBinding getViewBinding() {
+    public ActivityForgotPasswordBinding getViewBinding() {
         return ActivityForgotPasswordBinding.inflate(getLayoutInflater());
     }
 
