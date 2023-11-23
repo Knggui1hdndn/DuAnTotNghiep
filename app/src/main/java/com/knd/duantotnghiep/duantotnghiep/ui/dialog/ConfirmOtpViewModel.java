@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.SignUpRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.User;
-import com.knd.duantotnghiep.duantotnghiep.respository.AuthResponse;
+import com.knd.duantotnghiep.duantotnghiep.respository.AuthRepository;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 
 import javax.inject.Inject;
@@ -27,13 +27,13 @@ public class ConfirmOtpViewModel extends ViewModel {
     public MutableLiveData<String> txtOtp6 = new MutableLiveData("");
     public MutableLiveData<String> address = new MutableLiveData("");
     public MutableLiveData<String> error = new MutableLiveData("");
-    private final AuthResponse authResponse;
+    private final AuthRepository authResponse;
     public LiveData<NetworkResult<MessageResponse>> signUpLocal;
     public LiveData<NetworkResult<MessageResponse>> verifyOtp;
 
 
     @Inject
-    public ConfirmOtpViewModel(AuthResponse authResponse) {
+    public ConfirmOtpViewModel(AuthRepository authResponse) {
         this.authResponse = authResponse;
         signUpLocal = authResponse.signUpLocal;
         verifyOtp = authResponse.verifyOtp;

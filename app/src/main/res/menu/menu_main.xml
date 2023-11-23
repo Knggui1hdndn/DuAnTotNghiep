@@ -17,7 +17,7 @@
         android:icon="@drawable/baseline_favorite_border_24"
         android:title="Favourite" />
     <item
-        android:id="@+id/forgotPasswordActivity"
+        android:id="@+id/myProfileActivity"
         android:icon="@drawable/baseline_people_24"
-        android:title="" />
+        android:title="Profile" />
 </menu>

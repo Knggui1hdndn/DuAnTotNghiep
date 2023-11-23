@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="0dp"
+            android:src="@drawable/ok"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="102dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="-30dp"
+            android:background="@color/click"
+            android:gravity="center"
+            android:rotation="50"
+            android:id="@+id/txtSales"
+            android:text="50%"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="549.000 ₫"
+            app:strikethrough="@{true}"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/shadow"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPriceBought" />
+
+        <TextView
+            android:id="@+id/txtPriceBought"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_height="wrap_content"
+            android:text="549.000 ₫"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imgProduct"
+            app:layout_constraintEnd_toEndOf="@+id/imgProduct"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

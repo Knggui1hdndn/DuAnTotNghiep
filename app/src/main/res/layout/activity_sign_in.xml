@@ -1,98 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.SignInActivity">
+<layout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="70dp"
-        android:text="Sign in"
-        android:textColor="#090909"
-        android:textSize="40dp"
-        android:textStyle="bold" />
+    <data>
 
-    <EditText
-        android:id="@+id/edEmailSignin"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:hint="E-mail" />
+        <variable
+            name="SignInViewModel"
+            type="com.knd.duantotnghiep.duantotnghiep.ui.signIn.LoginViewModel" />
+    </data>
 
-    <EditText
-        android:id="@+id/edPasswordSignin"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:hint="Password"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="20dp"
-        android:text="Forgot password?"
-        android:textColor="#090909" />
-
-    <Button
-        android:id="@+id/btnSignIn"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#090909"
-        android:text="Sign in"
-        android:textColor="#F3ECEF" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="OR"
-        android:textSize="30dp" />
-
-    <Button
-        android:id="@+id/btnSignInGoogle"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#9A9999"
-        android:text="Sign in with Google"
-        android:textColor="#0E0E0E" />
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".ui.SignInActivity">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Don't have account?"
-            android:textSize="15dp" />
+            android:layout_marginTop="35dp"
+            android:text="Sign in"
+            android:textColor="#090909"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtAccount"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email or Phone Number"
+                android:text="@={SignInViewModel.txtAccount}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:text="@={SignInViewModel.txtPassword}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/SignUp"
+            android:id="@+id/tvForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
-            android:text="Sign up"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:text="Forgot password?"
             android:textColor="#090909" />
 
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#090909"
+            android:text="Sign in"
+            android:textAllCaps="false"
+            android:textColor="#F3ECEF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/btnStart"
+                tools:layout_editor_absoluteX="20dp">
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="0dp"
+                    android:layout_height="1.5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#B2ACAC"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Or sign in with"
+                    android:textColor="#B2ACAC"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="1.5dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#B2ACAC"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLoginGg"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/outlined_box"
+                    android:drawableStart="@drawable/ic_gg"
+                    android:paddingStart="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="15dp"
+                    android:text="Google"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Don't have account?"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/SignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="Sign up"
+                    android:textColor="#090909" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

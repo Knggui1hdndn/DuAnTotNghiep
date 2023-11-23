@@ -29,31 +29,27 @@ public class NetworkResult<T> {
                         String auth = response.headers().get("Authorization");
                         onSaveLocal.save(auth);
                     }
-                    Log.d("errorBody3","Error"+response.errorBody());
 
                     liveData.postValue(new NetworkResult.Success<>(data));
                 } else if (response.errorBody() != null) {
-                    Log.d("errorBody2","Error"+response.errorBody());
                     try {
                         String errorBody = response.errorBody().string();
-                        Log.d("errorBody","Error"+errorBody);
                         MessageResponse messageResponse = new Gson().fromJson(errorBody, MessageResponse.class);
-                        Log.d("errorBody","Error"+messageResponse.getError());
-
                         liveData.postValue(new NetworkResult.Error<>(messageResponse.getError()));
                     } catch (IOException e) {
                         liveData.postValue(new NetworkResult.Error<>("Error parsing error response"));
                     }
                 } else {
-                    Log.d("errorBody1","Error"+response.errorBody());
-
                     liveData.postValue(new NetworkResult.Error<>("Something Went Wrong"));
                 }
+
+
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                liveData.postValue(new NetworkResult.Error(t.getLocalizedMessage()));
+                Log.d("saaaaaaaaaaaaaaaa",t.getMessage());
+                liveData.postValue(new NetworkResult.Error<>(t.getLocalizedMessage()));
             }
         });
     }

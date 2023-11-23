@@ -28,11 +28,10 @@ public class AuthInterceptor implements Interceptor {
 
     @NonNull
     @Override
-
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request.Builder request = chain.request().newBuilder();
         String token = tokenManager.getToken();
-        request.addHeader("Authorization", "Bearer $token");
+        request.addHeader("Authorization", "Bearer "+token);
         return chain.proceed(request.build());
     }
 }

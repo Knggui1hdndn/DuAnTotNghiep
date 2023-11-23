@@ -8,8 +8,21 @@ public class Notification {
     private String title;
     private String body;
     private Long createAt;
+    private boolean isSeen=false;
 
+    public boolean isSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(boolean seen) {
+        isSeen = seen;
+    }
     public Notification() {
+    }
+    public Notification(String url, String title, String body) {
+        this.url = url;
+        this.title = title;
+        this.body = body;
     }
 
     public String get_id() {

@@ -7,14 +7,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 
 import com.knd.duantotnghiep.duantotnghiep.Dao.SearchDao;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivitySearchBinding;
+import com.knd.duantotnghiep.duantotnghiep.models.ProductResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.SearchLocal;
 import com.knd.duantotnghiep.duantotnghiep.ui.sign_up.SignUpViewModel;
 import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
@@ -31,15 +34,15 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
     private SearchViewModel searchViewModel;
-    @Inject
     public SearchAdapter searchAdapter;
     @Inject
     public SearchDao searchDao;
-    private ArrayList<SearchLocal> localArrayList = new ArrayList<>();
+    private final ArrayList<Object> localArrayList = new ArrayList<>();
 
     @Override
     protected void initData() {
-        localArrayList.addAll(searchDao.getListSearch());
+        searchAdapter = new SearchAdapter();
+        //      localArrayList.addAll(searchDao.getListSearch());
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
     }
 
@@ -63,14 +66,14 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // searchAdapter.getFilter().filter(charSequence);
-                if (binding.search.getText().toString().length() > 0)
-                    searchViewModel.searchProduct(charSequence.toString(), 0);
-                else handleUIVisibility(View.GONE, View.VISIBLE, View.INVISIBLE);
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if (binding.search.getText().toString().length() > 0)
+                    searchViewModel.searchProduct(editable.toString(), 0);
+                else handleUIVisibility(View.GONE, View.VISIBLE, View.INVISIBLE);
             }
         });
         binding.rcy.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -78,30 +81,33 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                int total = layoutManager.getItemCount();
-                int currentLastItem = layoutManager.findLastVisibleItemPosition();
-                if (total - 1 == currentLastItem) {
-                    searchViewModel.searchProduct(binding.search.getText().toString(), i * 10);
-                    handleUIVisibility(View.VISIBLE, View.VISIBLE, View.INVISIBLE);
-                    i += 1;
-                }
+//                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+//                int total = layoutManager.getItemCount();
+//                int currentLastItem = layoutManager.findLastVisibleItemPosition();
+//                if (total - 1 == currentLastItem) {
+//                    searchViewModel.searchProduct(binding.search.getText().toString(), i * 10);
+//                    handleUIVisibility(View.VISIBLE, View.VISIBLE, View.INVISIBLE);
+//                    i += 1;
+//                }
             }
         });
     }
 
     @Override
     protected void initObserver() {
-        searchViewModel.searchLiveData.observe(this, listNetworkResult -> ApiCallBack.handleResult(listNetworkResult, new ApiCallBack.HandleResult<List<SearchLocal>>() {
+        searchViewModel.searchLiveData.observe(this, listNetworkResult -> ApiCallBack.handleResult(listNetworkResult, new ApiCallBack.HandleResult<List<ProductResponse>>() {
             @Override
-            public void handleSuccess(List<SearchLocal> data) {
+            public void handleSuccess(List<ProductResponse> data) {
                 handleUIVisibility(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                localArrayList.clear();
                 localArrayList.addAll(data);
+                searchAdapter.setData(localArrayList);
             }
 
             @Override
             public void handleError(String error) {
-                if (binding.search.getText().toString().length() > 0)     handleUIVisibility(View.VISIBLE, View.INVISIBLE, View.VISIBLE);
+                if (binding.search.getText().toString().length() > 0)
+                    handleUIVisibility(View.VISIBLE, View.INVISIBLE, View.VISIBLE);
             }
 
             @Override
@@ -131,7 +137,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
     }
 
     @Override
-    protected ActivitySearchBinding getViewBinding() {
+    public ActivitySearchBinding getViewBinding() {
         return ActivitySearchBinding.inflate(getLayoutInflater());
     }
 }

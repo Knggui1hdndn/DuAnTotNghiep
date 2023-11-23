@@ -1,5 +1,12 @@
 package com.knd.duantotnghiep.duantotnghiep.models;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
 enum RoleType {
     ADMIN, USER
 }
@@ -8,12 +15,13 @@ enum AuthType {
     LOCAL, GOOGLE
 }
 
-public class User {
+public class User implements Serializable {
     private String _id;
     private String name;
     private String avatar;
-    private String[] address;
+    private String address;
     private String phoneNumber;
+    private String email;
     private String password;
     private String authType = AuthType.LOCAL.name();
     private String authGoogleId = null;
@@ -22,7 +30,15 @@ public class User {
     public User() {
     }
 
-    public User(String _id, String name, String avatar, String[] address, String phoneNumber, String password, AuthType authType, String authGoogleId, RoleType typeRole) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String _id, String name, String avatar, String address, String phoneNumber, String password, AuthType authType, String authGoogleId, RoleType typeRole) {
         this._id = _id;
         this.name = name;
         this.avatar = avatar;
@@ -32,6 +48,22 @@ public class User {
         this.authType = authType.name();
         this.authGoogleId = authGoogleId;
         this.roleType = typeRole.name();
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "_id='" + _id + '\'' +
+                ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", authType='" + authType + '\'' +
+                ", authGoogleId='" + authGoogleId + '\'' +
+                ", roleType='" + roleType + '\'' +
+                '}';
     }
 
     public String get_id() {
@@ -58,11 +90,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String[] getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String[] address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

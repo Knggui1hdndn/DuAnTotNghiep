@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.knd.duantotnghiep.duantotnghiep.ui.main.HomeFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/shoppingBagFragment"
-        android:name="com.knd.duantotnghiep.duantotnghiep.ui.Fragments.ShoppingBagFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.shopping_bag.ShoppingBagFragment"
         android:label="fragment_shopping_bag"
         tools:layout="@layout/fragment_shopping_bag" >
         <action
@@ -34,16 +34,17 @@
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
-        android:name="com.knd.duantotnghiep.duantotnghiep.ui.Fragments.WishListFragment"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.favourite.WishListFragment"
         android:label="fragment_wish_list"
         tools:layout="@layout/fragment_wish_list" >
         <action
             android:id="@+id/action_wishListFragment_to_forgotPasswordActivity"
-            app:destination="@id/forgotPasswordActivity" />
+            app:destination="@id/myProfileActivity" />
     </fragment>
-    <activity
-        android:id="@+id/forgotPasswordActivity"
-        android:name="com.knd.duantotnghiep.duantotnghiep.ui.forgot_password.ForgotPasswordActivity"
-        android:label="activity_forgot_password"
-        tools:layout="@layout/activity_forgot_password" />
+    <fragment
+        android:id="@+id/myProfileActivity"
+        android:name="com.knd.duantotnghiep.duantotnghiep.ui.MyProfileFragment"
+        android:label="activity_my_profile"
+        tools:layout="@layout/activity_my_profile" />
+
 </navigation>

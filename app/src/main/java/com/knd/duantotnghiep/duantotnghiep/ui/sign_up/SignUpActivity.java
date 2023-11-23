@@ -3,20 +3,18 @@ package com.knd.duantotnghiep.duantotnghiep.ui.sign_up;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivitySignUpBinding;
+import com.knd.duantotnghiep.duantotnghiep.models.LoginRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.SignUpRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.User;
-import com.knd.duantotnghiep.duantotnghiep.ui.LoginActivity;
 import com.knd.duantotnghiep.duantotnghiep.ui.SignInActivity;
 import com.knd.duantotnghiep.duantotnghiep.ui.dialog.ConfirmOtpBottomSheet;
 import com.knd.duantotnghiep.duantotnghiep.ui.dialog.ConfirmOtpCallback;
@@ -26,12 +24,7 @@ import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.UserPreferencesManager;
 
 
-import java.security.Provider;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -46,17 +39,20 @@ public class SignUpActivity extends HandleSignUpGoogle {
     public UserPreferencesManager userPreferencesManager;
 
     @Override
-    void SignInGoogleClientSuccess(String idToken) {
-        signUpViewModel.authenticateGoogle(idToken);
+    public void SignInGoogleClientSuccess(String idToken) {
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(s -> signUpViewModel.authenticateGoogle(idToken,s) );
+
+
     }
 
     @Override
-    void SignInGoogleClientError(String errorMessage) {
+    public void SignInGoogleClientError(String errorMessage) {
         showMessage(errorMessage);
     }
 
+
     @Override
-    protected ActivitySignUpBinding getViewBinding() {
+    public ActivitySignUpBinding getViewBinding() {
         return ActivitySignUpBinding.inflate(getLayoutInflater());
     }
 

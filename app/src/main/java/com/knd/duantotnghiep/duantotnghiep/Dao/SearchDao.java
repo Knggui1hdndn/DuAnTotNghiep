@@ -1,12 +1,10 @@
 package com.knd.duantotnghiep.duantotnghiep.Dao;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.knd.duantotnghiep.duantotnghiep.models.Product;
 import com.knd.duantotnghiep.duantotnghiep.models.SearchLocal;
 
 import java.util.List;

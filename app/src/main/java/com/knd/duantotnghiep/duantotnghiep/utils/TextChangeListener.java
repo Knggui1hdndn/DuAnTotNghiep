@@ -12,8 +12,7 @@ public class TextChangeListener implements OnTextChangeCallBack {
 
     @Override
     public void onTextChange(OnTextChange onTextChange, TextInputLayout... textInputLayout) {
-        Log.d("ssssssssssssssssssssss",textInputLayout.length+"");
-         for (int i = 0; i < textInputLayout.length; i++){
+          for (int i = 0; i < textInputLayout.length; i++){
              textInputLayout[i].getEditText().addTextChangedListener(new TextWatcher() {
                  @Override
                  public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

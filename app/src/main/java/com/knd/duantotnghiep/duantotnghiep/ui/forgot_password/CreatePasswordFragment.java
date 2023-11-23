@@ -14,7 +14,7 @@ import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseFragment;
 import com.knd.duantotnghiep.duantotnghiep.databinding.FragmentCreatePasswordBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
-import com.knd.duantotnghiep.duantotnghiep.respository.AuthResponse;
+import com.knd.duantotnghiep.duantotnghiep.respository.AuthRepository;
 import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class CreatePasswordFragment extends BaseFragment<FragmentCreatePasswordBinding> {
     @Inject
-    public AuthResponse authResponse;
+    public AuthRepository authResponse;
 
 
     public CreatePasswordFragment() {
@@ -34,7 +34,7 @@ public class CreatePasswordFragment extends BaseFragment<FragmentCreatePasswordB
     @Override
     public void initObserver() {
         authResponse.updatePassword.observe(requireActivity(), result -> {
-            ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<MessageResponse>() {
+            ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
                     Toast.makeText(requireActivity(), data.getMessage(), Toast.LENGTH_SHORT).show();

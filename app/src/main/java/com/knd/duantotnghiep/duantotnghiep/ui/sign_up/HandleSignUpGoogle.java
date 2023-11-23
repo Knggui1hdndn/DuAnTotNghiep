@@ -14,20 +14,19 @@ import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivitySignUpBinding;
 
 public abstract class HandleSignUpGoogle extends BaseActivity<ActivitySignUpBinding> {
-    abstract void SignInGoogleClientSuccess(String idToken);
+    public abstract void SignInGoogleClientSuccess(String idToken);
 
-    abstract void SignInGoogleClientError(String errorMessage);
+    public  abstract void SignInGoogleClientError(String errorMessage);
 
     @Override
-    protected ActivitySignUpBinding getViewBinding() {
+    public ActivitySignUpBinding getViewBinding() {
         return ActivitySignUpBinding.inflate(getLayoutInflater());
     }
 
     private SignInClient oneTapClient;
-    private BeginSignInRequest signInRequest;
 
 
-    private ActivityResultLauncher<IntentSenderRequest> senderIntent = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), result -> {
+    private final ActivityResultLauncher<IntentSenderRequest> senderIntent = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), result -> {
         if (result.getData() != null) {
             try {
                 SignInCredential credential = oneTapClient.getSignInCredentialFromIntent(result.getData());
@@ -41,7 +40,10 @@ public abstract class HandleSignUpGoogle extends BaseActivity<ActivitySignUpBind
 
     public void signInGoogle() {
         oneTapClient = Identity.getSignInClient(this);
-        signInRequest = BeginSignInRequest.builder()
+        // Your server's client ID, not your Android client ID.
+        // Only show accounts previously used to sign in.
+        // Automatically sign in when exactly one credential is retrieved.
+        BeginSignInRequest signInRequest = BeginSignInRequest.builder()
                 .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder()
                         .setSupported(true)
                         .build())
