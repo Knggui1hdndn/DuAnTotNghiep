@@ -52,25 +52,13 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.0" />
 
-    <FrameLayout
-        android:id="@+id/mFrameLayout"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcy">
 
         <ProgressBar
             android:id="@+id/mProgress"
             android:layout_width="wrap_content"
-
+android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
             android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/refresh"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/baseline_refresh_24" />
-    </FrameLayout>
-</LinearLayout>
+
+ </LinearLayout>

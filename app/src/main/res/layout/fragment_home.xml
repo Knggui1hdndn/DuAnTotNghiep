@@ -52,17 +52,30 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_spmoi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:clipToPadding="false"
-            android:padding="5dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               >
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rcv_spmoi"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="20dp"
+                   android:clipToPadding="false"
+                   android:padding="5dp"
+                   android:paddingStart="8dp"
+                   android:paddingEnd="8dp"
+                   app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                   app:spanCount="2" />
+               <ProgressBar
+                   android:layout_gravity="center_horizontal"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/mProgress"
+                   />
+           </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

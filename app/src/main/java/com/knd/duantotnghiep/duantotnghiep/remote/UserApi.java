@@ -7,6 +7,7 @@ import com.knd.duantotnghiep.duantotnghiep.models.ProductResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.SearchLocal;
 import com.knd.duantotnghiep.duantotnghiep.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;

@@ -8,6 +8,7 @@ import com.knd.duantotnghiep.duantotnghiep.models.CountsOrderDetailsAndNoti;
 import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
+import com.knd.duantotnghiep.duantotnghiep.models.OrderDTO;
 import com.knd.duantotnghiep.duantotnghiep.models.OrderRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.OrderResponse;
 import com.knd.duantotnghiep.duantotnghiep.remote.OrderApi;
@@ -37,7 +38,8 @@ public class OrderRepository {
 
     private MutableLiveData<NetworkResult<List<DetailOrderResponse>>> _getDetailOrders = new MutableLiveData<>();
     public LiveData<NetworkResult<List<DetailOrderResponse>>> getDetailOrders = _getDetailOrders;
-
+    private MutableLiveData<NetworkResult<OrderDTO>> _getDetailOrdersShow = new MutableLiveData<>();
+    public LiveData<NetworkResult<OrderDTO>>  getDetailOrdersShow = _getDetailOrdersShow;
     private MutableLiveData<NetworkResult<DetailOrderResponse>> _updateDetailOrders = new MutableLiveData<>();
     public LiveData<NetworkResult<DetailOrderResponse>> updateDetailOrders = _updateDetailOrders;
 
@@ -56,8 +58,8 @@ public class OrderRepository {
     public LiveData<NetworkResult<String>>  purchaseNow = _purchaseNow;
     private MutableLiveData<NetworkResult<MessageResponse>> _checkBuyNow = new MutableLiveData<>();
     public LiveData<NetworkResult<MessageResponse>> checkBuyNow = _checkBuyNow;
-    public void getOrdersByStatus(String status) {
-        NetworkResult.handleCallApi(orderApi.getOrderByStatus(status), _getOrdersByStatus, null);
+    public void getOrdersByStatus(String status,int skip) {
+        NetworkResult.handleCallApi(orderApi.getOrderByStatus(status,skip), _getOrdersByStatus, null);
     }
     public void checkBuyNow( String idQuantity, int quantity) {
         NetworkResult.handleCallApi(orderApi.checkBuyNow(idQuantity,quantity), _checkBuyNow, null);
@@ -75,7 +77,9 @@ public class OrderRepository {
     public void getDetailOrders(Boolean isPay) {
         NetworkResult.handleCallApi(orderApi.getDetailOrders(isPay), _getDetailOrders, null);
     }
-
+    public void getDetailOrdersShow(String idOrder) {
+        NetworkResult.handleCallApi(orderApi.getDetailOrders(idOrder), _getDetailOrdersShow, null);
+    }
     public void getCountNotiAndOrderDetails() {
         NetworkResult.handleCallApi(orderApi.getCountNotiAndOrderDetails(), _getCountNotiAndOrderDetails, null);
     }

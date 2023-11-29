@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface NotificationApi {
     @GET("notification/")
-    Call<List<Notification>> getNotification();
+    Call<List<Notification>> getNotification(@Query("skip") int skip);
 
     @PUT("notification/")
     Call<Notification> updateNotification(@Query("_id") String _idNotification);

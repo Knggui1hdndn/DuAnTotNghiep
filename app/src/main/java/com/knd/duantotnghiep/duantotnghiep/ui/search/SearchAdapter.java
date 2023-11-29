@@ -14,7 +14,7 @@ import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 
-public class SearchAdapter extends BaseAdapter<ItemSearchBinding, Object> {
+public class SearchAdapter extends BaseAdapter<ItemSearchBinding, ProductResponse> {
 
     @Override
     protected ItemSearchBinding getItemBinding(ViewGroup parent) {
@@ -22,15 +22,14 @@ public class SearchAdapter extends BaseAdapter<ItemSearchBinding, Object> {
     }
 
     @Override
-    protected void bind(Object data, ItemSearchBinding binding) {
-        if (data instanceof ProductResponse) {
-            binding.txtName.setText(((ProductResponse) data).getName());
-            binding.isSearch.setVisibility(View.GONE);
-            Picasso.get().load(Utils.getImageProduct((ProductResponse) data)).into(binding.imgProduct);
-        } else if (data instanceof SearchLocal) {
-            binding.isSearch.setVisibility(View.VISIBLE);
-            binding.txtName.setText(((SearchLocal) data).getName());
-            Picasso.get().load(((SearchLocal) data).getImage()).into(binding.imgProduct);
-        }
+    protected void bind(ProductResponse data, ItemSearchBinding binding) {
+       try {
+           if (data instanceof ProductResponse) {
+               binding.txtName.setText(((ProductResponse) data).getName());
+               binding.isSearch.setVisibility(View.GONE);
+
+               Picasso.get().load(Utils.getImageProduct((ProductResponse) data)).into(binding.imgProduct);
+           }
+       }catch (Exception e) {}
     }
 }

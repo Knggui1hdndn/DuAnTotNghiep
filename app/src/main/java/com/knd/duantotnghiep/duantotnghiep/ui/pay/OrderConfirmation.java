@@ -50,7 +50,6 @@ public class OrderConfirmation extends BaseActivity<LayoutConfimPurchaseBinding>
             user = (User) intent.getSerializableExtra("user");
             assert user != null;
             setDeliveryInformation(user);
-
         }
     };
 

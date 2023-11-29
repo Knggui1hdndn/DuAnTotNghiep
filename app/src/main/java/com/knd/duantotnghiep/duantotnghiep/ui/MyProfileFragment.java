@@ -13,6 +13,8 @@ import com.knd.duantotnghiep.duantotnghiep.models.User;
 import com.knd.duantotnghiep.duantotnghiep.ui.my_order.MyOderActivity;
 import com.knd.duantotnghiep.duantotnghiep.ui.my_order.MyOrderAdapter;
 import com.knd.duantotnghiep.duantotnghiep.ui.profile.EditProfileActivity;
+import com.knd.duantotnghiep.duantotnghiep.ui.signIn.LoginActivity;
+import com.knd.duantotnghiep.duantotnghiep.utils.TokenManager;
 import com.knd.duantotnghiep.duantotnghiep.utils.UserPreferencesManager;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 import com.squareup.picasso.Picasso;
@@ -27,6 +29,9 @@ public class MyProfileFragment extends BaseFragment<ActivityMyProfileBinding> {
 
     @Inject
     public UserPreferencesManager userPreferencesManager;
+
+    @Inject
+    public TokenManager tokenManager;
     User user;
 
     public MyProfileFragment() {
@@ -48,7 +53,12 @@ public class MyProfileFragment extends BaseFragment<ActivityMyProfileBinding> {
         binding.edit.setOnClickListener(view -> {
             startActivity(new Intent(requireActivity(), EditProfileActivity.class));
         });
-
+        binding.logout.setOnClickListener(view -> {
+            userPreferencesManager.removeCurrentUser();
+            tokenManager.removeToken();
+            requireActivity().finish();
+            startActivity(new Intent(requireActivity(), LoginActivity.class));
+        });
     }
 
     @Override
@@ -61,7 +71,7 @@ public class MyProfileFragment extends BaseFragment<ActivityMyProfileBinding> {
     public void initData() {
         user = userPreferencesManager.getCurrentUser();
         if (user != null) {
-            Utils.loadImage(binding.avatar,user.getAvatar());
+            Utils.loadImage(binding.avatar, user.getAvatar());
             binding.txtName.setText(checkInfoNull(user.getName()));
             binding.txtAddress.setText(checkInfoNull(user.getAddress()));
             binding.txtPhone.setText(checkInfoNull(user.getPhoneNumber()));

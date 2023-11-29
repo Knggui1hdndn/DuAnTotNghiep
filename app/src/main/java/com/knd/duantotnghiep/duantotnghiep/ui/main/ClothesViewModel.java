@@ -9,6 +9,7 @@ import com.knd.duantotnghiep.duantotnghiep.respository.ProductRepository;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,11 +22,11 @@ public class ClothesViewModel extends ViewModel {
     public void getProduct() {
         productRepository.getProducts();
     }
-    public void getProductsNew() {
-        productRepository.getProductsNew();
+    public void getProductsNew(int skip) {
+        productRepository.getProductsNew(skip);
     }
-    public void getProductsSale() {
-        productRepository.getProductsSale();
+    public void getProductsSale(int skip) {
+        productRepository.getProductsSale(skip);
     }
     public void getFavourites() {
         productRepository.getFavourites();
@@ -40,7 +41,7 @@ public class ClothesViewModel extends ViewModel {
     public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProducts;
     public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductByCategory;
     public LiveData<NetworkResult<CategoryResponse>> getCategories;
-    public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductsNew;
+    public LiveData<NetworkResult<List<ProductResponse>>> getProductsNew;
     public LiveData<NetworkResult<ArrayList<ProductResponse>>> getFavourites;
     public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductsSale;
 

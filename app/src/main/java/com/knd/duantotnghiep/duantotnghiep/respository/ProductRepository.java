@@ -10,8 +10,11 @@ import com.knd.duantotnghiep.duantotnghiep.remote.ProductAPI;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+
+import retrofit2.http.Query;
 
 public class ProductRepository {//lớp trung gian giao tiếp giữa APi or local với viemModel
     private ProductAPI productAPI;
@@ -39,8 +42,8 @@ public class ProductRepository {//lớp trung gian giao tiếp giữa APi or loc
     private final MutableLiveData<NetworkResult<ArrayList<ProductResponse>>> _getProductsSale = new MutableLiveData<>();
     public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductsSale = _getProductsSale;
 
-    private final MutableLiveData<NetworkResult<ArrayList<ProductResponse>>> _getProductsNew = new MutableLiveData<>();
-    public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductsNew = _getProductsNew;
+    private final MutableLiveData<NetworkResult<List<ProductResponse>>> _getProductsNew = new MutableLiveData<>();
+    public LiveData<NetworkResult<List<ProductResponse>>> getProductsNew = _getProductsNew;
 
     @Inject
     public ProductRepository(ProductAPI productAPI) {
@@ -71,15 +74,15 @@ public class ProductRepository {//lớp trung gian giao tiếp giữa APi or loc
         NetworkResult.handleCallApi(productAPI.getCategories(), _getCategories, null);
     }
 
-    public void getDetailsProduct(String idProduct) {
-        NetworkResult.handleCallApi(productAPI.getDetailsProduct(idProduct), _getDetailsProduct, null);
+    public void getDetailsProduct(String idProduct ) {
+        NetworkResult.handleCallApi(productAPI.getDetailsProduct(idProduct ), _getDetailsProduct, null);
     }
 
-    public void getProductsSale() {
-        NetworkResult.handleCallApi(productAPI.getProductsSale(), _getProductsSale, null);
+    public void getProductsSale(int skip) {
+        NetworkResult.handleCallApi(productAPI.getProductsSale(skip), _getProductsSale, null);
     }
 
-    public void getProductsNew() {
-        NetworkResult.handleCallApi(productAPI.getProductsNew(), _getProductsNew, null);
+    public void getProductsNew(int skip) {
+        NetworkResult.handleCallApi(productAPI.getProductsNew(skip), _getProductsNew, null);
     }
 }

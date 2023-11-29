@@ -23,10 +23,10 @@ public class NotificationAdapter extends BaseAdapter<ItemNotificationBinding, No
         binding.txtBody.setText(data.getBody());
         binding.txtTitle.setText(data.getTitle());
         binding.txtTime.setText(Utils.formatDateDetails(data.getCreateAt()));
-        if (data.isSeen()) {
-            binding.mConstraintLayout.setBackgroundColor(Color.WHITE);
-        } else {
-            binding.mConstraintLayout.setBackgroundColor(binding.mConstraintLayout.getContext().getColor(R.color.unClick));
-        }
+//        if (data.isSeen()) {
+//            binding.mConstraintLayout.setBackgroundColor(Color.WHITE);
+//        } else {
+//            binding.mConstraintLayout.setBackgroundColor(binding.mConstraintLayout.getContext().getColor(R.color.unClick));
+//        }
     }
 }

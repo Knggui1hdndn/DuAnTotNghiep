@@ -3,6 +3,8 @@ package com.knd.duantotnghiep.duantotnghiep.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import javax.inject.Inject;
+
 @Entity(tableName = "SearchLocal")
 public class SearchLocal {
     @PrimaryKey(autoGenerate = true)
@@ -10,8 +12,8 @@ public class SearchLocal {
     private String _id ;
     private String name;
     private String image;
-
-    public SearchLocal(  String _id, String name, String image) {
+ 
+    public  SearchLocal(  String _id, String name, String image) {
          this._id = _id;
         this.name = name;
         this.image = image;

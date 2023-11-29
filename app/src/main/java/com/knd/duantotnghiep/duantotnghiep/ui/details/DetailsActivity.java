@@ -35,6 +35,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
+import com.knd.duantotnghiep.duantotnghiep.core.Pagination;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivityDetailsBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderResponse;
@@ -109,6 +110,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
     private final ArrayList<String> uris = new ArrayList<>();
     private ArrayList<EvaluateResponse> evaluates = new ArrayList<>();
     private ImageEvaluateAdapter evaluateAdapter1;
+    private Pagination productResponsePagination;
     private final ActivityResultLauncher<PickVisualMediaRequest> pickImage = registerForActivityResult(new ActivityResultContracts.PickMultipleVisualMedia(5), uris -> {
         if (!uris.isEmpty()) {
             uris.forEach(uri -> {
@@ -205,15 +207,8 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
         });
 
 
-        //     binding.viewPager.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                int position = getLastPositionItem(recyclerView);
-//                updateItemImgColorClick(imgColorProducts.get(position));
-//                colorAdapter.notifyDataSetChanged();
-        //       }
-        //   });
-    }
+
+     }
 
     public MultipartBody.Part createMultipartPart(File file) {
         return MultipartBody.Part.createFormData("avatars", file.getName(), RequestBody.create(file, MediaType.parse("multipart/form-data")));
@@ -294,19 +289,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
     @Override
     protected void initData() {
         imageAdapter = new ImageAdapter();
-//        SnapHelper snapHelper = new PagerSnapHelper();
-//        RecyclerView.ItemDecoration itemDecoration = new RecyclerView.ItemDecoration() {
-//            @Override
-//            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-//                int parentWidth = parent.getWidth();
-//                int childWidth = view.getWidth();
-//                int margin = (parentWidth - childWidth) / 2;
-//                outRect.left = margin;
-//                outRect.right = margin;
-//            }
-//        };
-//       binding.viewPager.addItemDecoration(itemDecoration);
-//        snapHelper.attachToRecyclerView(binding.viewPager);
+
         evaluateAdapter = new EvaluateAdapter(new AdapterCallBack.EvaluateAdapterCallback() {
             @Override
             public void onYesClick(String idEvaluate) {
@@ -323,7 +306,14 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
         sizeAdapter = new SizeAdapter();
         detailsViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
         idProduct = getIntent().getStringExtra("idProduct");
-        detailsViewModel.getDetailsProduct(idProduct);
+        detailsViewModel.getDetailsProduct(idProduct );
+        productResponsePagination = new Pagination<EvaluateResponse>(this,
+                binding.mProgress,
+                evaluateAdapter,
+                detailsViewModel.getEvaluates, size -> {
+            detailsViewModel.getEvaluates(idProduct,size);
+        }).attach();
+        binding.rcyEvaluate.addOnScrollListener(productResponsePagination);
     }
 
     @Override
@@ -395,23 +385,13 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             ApiCallBack.handleResult(evaluateResponseNetworkResult, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(EvaluateResponse data) {
-                    EvaluateResponse dataOld = evaluates.stream()
-                            .filter(evaluateResponse -> evaluateResponse.get_id().equals(data.get_id()))
-                            .findFirst()
-                            .orElse(null);
-                    int index = evaluates.indexOf(dataOld);
-                    showMessage(index + "");
-                    EvaluateResponse existingEvaluateResponse = evaluates.get(index);
-                    ModelMapper modelMapper = new ModelMapper();
-                    modelMapper.map(data, existingEvaluateResponse);
-                    evaluates.set(index, existingEvaluateResponse);
-                    evaluateAdapter.notifyDataSetChanged();
+
                 }
 
                 @Override
                 public void handleError(String error) {
                     // Handle error if needed
-                    showMessage(error);
+
                 }
 
                 @Override
@@ -426,8 +406,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             ApiCallBack.handleResult(evaluateResponseNetworkResult, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
-                    evaluates.removeIf(evaluateResponse -> evaluateResponse.getUser().get_id().equals(userPreferencesManager.getCurrentUser().get_id()));
-                }
+                 }
 
                 @Override
                 public void handleError(String error) {
@@ -440,28 +419,9 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
                 }
             });
         });
-        detailsViewModel.getEvaluates.observe(this, evaluateResponseNetworkResult -> {
-            ApiCallBack.handleResult(evaluateResponseNetworkResult, new ApiCallBack.HandleResult<>() {
-                @Override
-                public void handleSuccess(List<EvaluateResponse> data) {
-                    evaluates = new ArrayList<>();
-                    evaluates.clear();
-                    evaluates.addAll(data);
-                    evaluateAdapter.setData(evaluates);
-                }
 
-                @Override
-                public void handleError(String error) {
-                    showMessage(error);
-                }
 
-                @Override
-                public void handleLoading() {
-
-                }
-            });
-        });
-        detailsViewModel.processDetailsOrder.observe(this, result -> {
+         detailsViewModel.processDetailsOrder.observe(this, result -> {
             ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
@@ -511,7 +471,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
                     colorAdapter.setData(imgColorProducts);
                     sizeAdapter.setData(productQuantityDetails);
                     binding.viewPager.setCurrentItem(0);
-                    detailsViewModel.getEvaluates(productResponse.get_id());
+                    detailsViewModel.getEvaluates(productResponse.get_id(),0);
                 }
             }
 

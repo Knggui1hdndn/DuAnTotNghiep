@@ -30,15 +30,16 @@ public class AdapterPagerSale extends BaseAdapter<ItemProductSaleBinding, Produc
     protected void bind(ProductResponse data, ItemProductSaleBinding binding) {
         try {
             Picasso.get().load(Utils.getImageProduct(data)).fit().into(binding.imgProduct);
+            double price = data.getPrice();
+            double sale = data.getSale();
+            double discountedPrice = price * (1 - (sale / 100));
+            String formattedPrice = Utils.formatPrice(price);
+            String formattedDiscountedPrice = Utils.formatPrice(discountedPrice);
+            binding.txtPrice.setText(formattedPrice);
+            binding.txtPriceBought.setText(formattedDiscountedPrice);
+            binding.txtSales.setText(data.getSale() + " %");
         } catch (Exception e) {
         }
-        double price = data.getPrice();
-        double sale = data.getSale();
-        double discountedPrice = price * (1 - (sale / 100));
-        String formattedPrice = Utils.formatPrice(price);
-        String formattedDiscountedPrice = Utils.formatPrice(discountedPrice);
-        binding.txtPrice.setText(formattedPrice);
-        binding.txtPriceBought.setText(formattedDiscountedPrice);
-        binding.txtSales.setText(data.getSale() + " %");
+
     }
 }

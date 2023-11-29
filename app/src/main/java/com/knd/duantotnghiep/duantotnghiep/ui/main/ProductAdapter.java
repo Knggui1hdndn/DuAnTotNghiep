@@ -1,6 +1,7 @@
 package com.knd.duantotnghiep.duantotnghiep.ui.main;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,22 +23,27 @@ public class ProductAdapter extends BaseAdapter<ItemProductBinding, ProductRespo
     @SuppressLint("SetTextI18n")
     @Override
     protected void bind(ProductResponse productResponse, ItemProductBinding binding) {
+        Log.d("sssssfaaaaaa",productResponse.getName()+"");
         if (productResponse != null) {
-            double price = productResponse.getPrice();
-            double sale = productResponse.getSale();
-            double discountedPrice = price * (1 - (sale / 100));
-            binding.tvPrice.setText("đ " + Utils.formatPrice(discountedPrice));
-            binding.tvTitle.setText(productResponse.getName());
-            binding.txtStar.setText(productResponse.getStar() + "");
-            binding.sold.setText("Sold " + productResponse.getSold());
+            try {
+                double price = productResponse.getPrice();
+                double sale = productResponse.getSale();
+                double discountedPrice = price * (1 - (sale / 100));
+                binding.tvPrice.setText("đ " + Utils.formatPrice(discountedPrice));
+                binding.tvTitle.setText(productResponse.getName());
+                binding.txtStar.setText(productResponse.getStar() + "");
+                binding.sold.setText("Sold " + productResponse.getSold());
 
-            if (productResponse.getProductDetails() != null && !productResponse.getProductDetails().isEmpty()) {
-                ProductDetail productDetail = productResponse.getProductDetails().get(0);
+                if (productResponse.getProductDetails() != null && !productResponse.getProductDetails().isEmpty()) {
+                    ProductDetail productDetail = productResponse.getProductDetails().get(0);
 
-                if (productDetail.getImageProducts() != null && !productDetail.getImageProducts().isEmpty()) {
-                    ImageQuantity imageProduct = productDetail.getImageProducts().get(0);
-                    Picasso.get().load(imageProduct.getImageProduct().getImage()).into(binding.image);
+                    if (productDetail.getImageProducts() != null && !productDetail.getImageProducts().isEmpty()) {
+                        ImageQuantity imageProduct = productDetail.getImageProducts().get(0);
+                        Picasso.get().load(imageProduct.getImageProduct().getImage()).into(binding.image);
+                    }
                 }
+            } catch (Exception e) {
+
             }
         }
     }

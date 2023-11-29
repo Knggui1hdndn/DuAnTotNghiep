@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,9 +17,11 @@ import android.view.View;
 import com.knd.duantotnghiep.duantotnghiep.Dao.SearchDao;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
+import com.knd.duantotnghiep.duantotnghiep.core.Pagination;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivitySearchBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.ProductResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.SearchLocal;
+import com.knd.duantotnghiep.duantotnghiep.ui.details.DetailsActivity;
 import com.knd.duantotnghiep.duantotnghiep.ui.sign_up.SignUpViewModel;
 import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
@@ -37,7 +40,8 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
     public SearchAdapter searchAdapter;
     @Inject
     public SearchDao searchDao;
-    private final ArrayList<Object> localArrayList = new ArrayList<>();
+    private ArrayList<ProductResponse> localArrayList = new ArrayList<>();
+    private Pagination<ProductResponse> productResponsePagination;
 
     @Override
     protected void initData() {
@@ -48,7 +52,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
 
     @Override
     protected void initView() {
-        handleUIVisibility(View.GONE, View.VISIBLE, View.INVISIBLE);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         binding.rcy.addItemDecoration(itemDecoration);
         binding.rcy.setAdapter(searchAdapter);
@@ -66,63 +69,36 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // searchAdapter.getFilter().filter(charSequence);
-
+                localArrayList.clear();
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                searchAdapter.setData(localArrayList);
                 if (binding.search.getText().toString().length() > 0)
                     searchViewModel.searchProduct(editable.toString(), 0);
-                else handleUIVisibility(View.GONE, View.VISIBLE, View.INVISIBLE);
+                else binding.mProgress.setVisibility(View.GONE);
             }
         });
-        binding.rcy.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            int i = 0;
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-//                int total = layoutManager.getItemCount();
-//                int currentLastItem = layoutManager.findLastVisibleItemPosition();
-//                if (total - 1 == currentLastItem) {
-//                    searchViewModel.searchProduct(binding.search.getText().toString(), i * 10);
-//                    handleUIVisibility(View.VISIBLE, View.VISIBLE, View.INVISIBLE);
-//                    i += 1;
-//                }
-            }
+        productResponsePagination = new Pagination<ProductResponse>(this,
+                binding.mProgress,
+                searchAdapter,
+                searchViewModel.searchLiveData, size -> {
+            searchViewModel.searchProduct(binding.search.getText().toString(), size);
+        }).attach();
+        binding.rcy.addOnScrollListener(productResponsePagination);
+        searchAdapter.setOnClickItemListener(item -> {
+            Intent intent = new Intent(this, DetailsActivity.class);
+            intent.putExtra("idProduct", item.get_id());
+            startActivity(intent);
         });
+        localArrayList = productResponsePagination.getList();
     }
 
     @Override
     protected void initObserver() {
-        searchViewModel.searchLiveData.observe(this, listNetworkResult -> ApiCallBack.handleResult(listNetworkResult, new ApiCallBack.HandleResult<List<ProductResponse>>() {
-            @Override
-            public void handleSuccess(List<ProductResponse> data) {
-                handleUIVisibility(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
-                localArrayList.clear();
-                localArrayList.addAll(data);
-                searchAdapter.setData(localArrayList);
-            }
-
-            @Override
-            public void handleError(String error) {
-                if (binding.search.getText().toString().length() > 0)
-                    handleUIVisibility(View.VISIBLE, View.INVISIBLE, View.VISIBLE);
-            }
-
-            @Override
-            public void handleLoading() {
-                if (binding.search.getText().toString().length() > 0)
-                    handleUIVisibility(View.VISIBLE, View.VISIBLE, View.INVISIBLE);
-            }
-        }));
     }
 
-    private void handleUIVisibility(int frameLayoutVisibility, int progressVisibility, int imageViewVisibility) {
-        binding.mFrameLayout.setVisibility(frameLayoutVisibility);
-        binding.mProgress.setVisibility(progressVisibility);
-        binding.refresh.setVisibility(imageViewVisibility);
-    }
 
     @Override
     public void onBackPressed() {
