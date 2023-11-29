@@ -36,30 +36,33 @@ public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateRe
         User user = data.getUser();
         long countYes = data.getFeelings().stream().filter(feeling -> Objects.equals(feeling.getType(), TypeFeeling.LIKE.name())).count();
         long countNo = data.getFeelings().stream().filter(feeling -> Objects.equals(feeling.getType(), TypeFeeling.DISLIKE.name())).count();
-        Picasso.get().load(user.getAvatar()+"").fit().into(binding.imgAvatar);
+        Picasso.get().load(user.getAvatar() + "").fit().into(binding.imgAvatar);
         binding.txtName.setText(user.getName());
         binding.txtDate.setText(Utils.formatDateDetails(data.getTimeCreated()));
-        binding.txtComment.setText(data.getComment()+"");
+        binding.txtComment.setText(data.getComment() + "");
         binding.yes.setOnClickListener(view -> {
             evaluateAdapterCallback.onYesClick(data.get_id());
-          //  binding.message.setText(countYes + " person found this article helpful");
+            if (data.getFeelings().stream().anyMatch(feeling -> user.get_id().equals(feeling.getIdUser())))
+                binding.message.setText("You and " + (countYes-1) + " person found this article helpful");
+
         });
 
         binding.no.setOnClickListener(view -> {
             evaluateAdapterCallback.onNoClick(data.get_id());
+            if (data.getFeelings().stream().anyMatch(feeling -> (user.get_id().equals(feeling.getIdUser()))))
+                binding.message.setText("You and " + (countNo-1) + " person found this article unhelpful");
 
-         //   binding.message.setText(countNo + " person found this article unhelpful");
         });
         setAdapterImage(data.getUrl());
         setStar(data.getStar());
-        if (data.getFeelings().stream().anyMatch(feeling -> user.get_id().equals(feeling.getIdUser())) ){
+        if (data.getFeelings().stream().anyMatch(feeling -> user.get_id().equals(feeling.getIdUser()))) {
 
-            if (countYes>=1){
-                binding.message.setText("You and "+(countYes-1) + " person found this article helpful");
+            if (countYes >= 1) {
+                binding.message.setText("You and " + (countYes - 1) + " person found this article helpful");
             }
 
-            if (countNo>=1){
-                binding.message.setText("You and "+(countNo-1) + " person found this article unhelpful");
+            if (countNo >= 1) {
+                binding.message.setText("You and " + (countNo - 1) + " person found this article unhelpful");
             }
 
         } else {
@@ -75,7 +78,7 @@ public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateRe
     }
 
     private void setStar(Integer stars) {
-        int star =  stars ;
+        int star = stars;
         ArrayList<ImageView> arrays = new ArrayList<>(Arrays.asList(binding.start1, binding.start2, binding.start3, binding.start4, binding.start5));
         for (int i = 0; i < arrays.size(); i++) {
             if (i < star) {

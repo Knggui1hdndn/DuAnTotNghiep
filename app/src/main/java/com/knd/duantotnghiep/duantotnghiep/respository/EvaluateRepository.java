@@ -27,15 +27,14 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public class EvaluateRepository {
-    private EvaluateApi auth;
+    @Inject
+      EvaluateApi auth;
 
     private final MutableLiveData<NetworkResult<List<EvaluateResponse>>> _getEvaluates = new MutableLiveData<>();
     public LiveData<NetworkResult<List<EvaluateResponse>>> getEvaluates = _getEvaluates;
 
     private final MutableLiveData<NetworkResult<EvaluateResponse>> _addEvaluates = new MutableLiveData<>();
     public LiveData<NetworkResult<EvaluateResponse>> addEvaluates = _addEvaluates;
-
-
 
     private final MutableLiveData<NetworkResult<EvaluateResponse>> _handelFeelingEvaluates = new MutableLiveData<>();
     public LiveData<NetworkResult<EvaluateResponse>>  handelFeelingEvaluates = _handelFeelingEvaluates;
@@ -44,9 +43,8 @@ public class EvaluateRepository {
     public LiveData<NetworkResult<MessageResponse>> deleteEvaluate = _deleteEvaluate;
 
     @Inject
-    public EvaluateRepository(EvaluateApi auth) {
-        this.auth = auth;
-    }
+    public EvaluateRepository() {
+     }
 
     public void handelFeelingEvaluates(String idEvaluate, FeelingRequest feelingRequest) {
         NetworkResult.handleCallApi(auth.handelFeelingEvaluates(idEvaluate, feelingRequest), _handelFeelingEvaluates, null);
@@ -57,8 +55,8 @@ public class EvaluateRepository {
         NetworkResult.handleCallApi(auth.addEvaluates(idProduct, star,comment, images), _addEvaluates, null);
     }
 
-    public void getEvaluates(String idProduct) {
-        NetworkResult.handleCallApi(auth.getEvaluates(idProduct), _getEvaluates, null);
+    public void getEvaluates(String idProduct,int skip) {
+        NetworkResult.handleCallApi(auth.getEvaluates(idProduct,skip), _getEvaluates, null);
     }
 
     public void deleteEvaluate(String idEvaluate) {

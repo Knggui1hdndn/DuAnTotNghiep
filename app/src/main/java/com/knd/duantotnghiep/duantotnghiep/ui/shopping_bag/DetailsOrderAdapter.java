@@ -32,7 +32,7 @@ public class DetailsOrderAdapter extends BaseAdapter<ItemLayoutShoppingBagBindin
     @SuppressLint("SetTextI18n")
     @Override
     protected void bind(DetailOrderResponse data, ItemLayoutShoppingBagBinding binding) {
-        Log.d("ssssssssssssssssss", "onClickViewDetailsOrder"+ data.getSelected());
+
         binding.checked.setChecked(data.getSelected());
         binding.txtTitle.setText(data.getProductResponse().getName() + "");
         binding.txtClassify.setText(data.getSize() + "-" + data.getImageQuantity().getImageProduct().getColor());
@@ -40,7 +40,6 @@ public class DetailsOrderAdapter extends BaseAdapter<ItemLayoutShoppingBagBindin
         binding.txtTotalAmount.setText("đ " + Utils.formatPrice(Double.valueOf(data.getIntoMoney())) + "");
         binding.txtRemaining.setText(data.getImageQuantity().getQuantity() + "");
         boolean checkError = data.getQuantity() > data.getImageQuantity().getQuantity();
-        Log.d("kskasmdsd", "kskasmdsd" + checkError);
         if (checkError) {
             binding.txtError.setVisibility(View.VISIBLE);
             binding.txtError.setText("The quantity of products exceeds the warehouse");

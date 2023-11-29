@@ -215,6 +215,11 @@ Giày nam Top Fit KRYPTON 8008007 được thiết kế đơn giản cùng lớp
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:spanCount="2"
                             tools:listitem="@layout/item_evaluate" />
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/mProgress"/>
                     </LinearLayout>
 
 

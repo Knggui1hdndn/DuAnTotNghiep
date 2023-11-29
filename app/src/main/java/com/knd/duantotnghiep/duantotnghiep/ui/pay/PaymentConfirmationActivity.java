@@ -98,6 +98,7 @@ public class PaymentConfirmationActivity extends BaseActivity<ActivityPaymentCon
             @SuppressLint("NewApi")
             @Override
             public void handleSuccess(PayQR data) {
+                Log.d("aokdoskdpasd",data.toString());
                 Picasso.get().load(data.getUrl()).fit().into(binding.imgQRCode);
                 countDownTimer = countDownExp(data.getExpiration() - data.getTimeCurrent());
                 countDownTimer.start();

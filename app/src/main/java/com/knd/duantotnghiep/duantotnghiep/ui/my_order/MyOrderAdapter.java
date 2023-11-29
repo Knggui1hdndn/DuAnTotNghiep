@@ -1,8 +1,11 @@
 package com.knd.duantotnghiep.duantotnghiep.ui.my_order;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseAdapter;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ItemLayoutMyOderBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderResponse;
@@ -14,7 +17,8 @@ import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 import java.util.function.Consumer;
 
 public class MyOrderAdapter extends BaseAdapter<ItemLayoutMyOderBinding, OrderResponse> {
-    private MyOrderAdapterCallback .OnClickListener onClickListener;
+    private MyOrderAdapterCallback.OnClickListener onClickListener;
+
     @Override
     protected ItemLayoutMyOderBinding getItemBinding(ViewGroup parent) {
         return ItemLayoutMyOderBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
@@ -34,14 +38,19 @@ public class MyOrderAdapter extends BaseAdapter<ItemLayoutMyOderBinding, OrderRe
         binding.txtTimeOrder.setText(Utils.formatDateDetails(data.getCreateAt()));
         binding.btnStatus.setText(data.getStatus());
         binding.pay.setText(data.getPayments());
+        binding.mConstraintLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), ShowDetailsOrderActivity.class);
+            intent.putExtra("order", new Gson().toJson(data));
+            intent.putExtra("idOrder", data.get_id());
+            view.getContext().startActivity(intent);
+        });
         if (data.getStatus().equals("Cancel")) {
             binding.btnStatus.setText("Recreate Order");
-
         }
         binding.btnStatus.setOnClickListener(view -> {
-          if (data.getStatus().equals("Cancel") || data.getStatus().equals("Wait for confirmation")) {
-              onClickListener.onRecreateOrder(data.get_id());
-          }
+            if (data.getStatus().equals("Cancel") || data.getStatus().equals("Wait for confirmation")) {
+                onClickListener.onRecreateOrder(data.get_id());
+            }
         });
     }
 }

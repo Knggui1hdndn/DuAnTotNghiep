@@ -12,6 +12,7 @@ import com.knd.duantotnghiep.duantotnghiep.models.User;
 import com.knd.duantotnghiep.duantotnghiep.remote.UserApi;
 import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

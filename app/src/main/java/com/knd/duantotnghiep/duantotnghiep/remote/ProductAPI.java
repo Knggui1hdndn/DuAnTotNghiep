@@ -6,12 +6,14 @@ import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.ProductResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ProductAPI {
 
@@ -37,9 +39,9 @@ public interface ProductAPI {
     @GET("products/details/{idProduct}")
     Call<ProductResponse> getDetailsProduct(@Path("idProduct")String idProduct);
     @GET("products/sale")
-    Call<ArrayList<ProductResponse>> getProductsSale();
+    Call<ArrayList<ProductResponse>> getProductsSale(@Query("skip") int skip);
 
     @GET("products/new")
-    Call<ArrayList<ProductResponse>> getProductsNew();
+    Call<List<ProductResponse>> getProductsNew(@Query("skip") int skip);
 
 }

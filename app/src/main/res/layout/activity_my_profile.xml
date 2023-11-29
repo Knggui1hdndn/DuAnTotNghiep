@@ -168,6 +168,7 @@
         android:layout_height="wrap_content"
         android:text="Logout"
         android:textAllCaps="false"
+        android:id="@+id/logout"
         android:padding="15dp"
         android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

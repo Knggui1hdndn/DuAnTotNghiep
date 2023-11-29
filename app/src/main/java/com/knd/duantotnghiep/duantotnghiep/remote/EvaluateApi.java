@@ -28,7 +28,7 @@ public interface EvaluateApi {
     Call<EvaluateResponse> addEvaluates(@Path("idProduct") String idProduct, @Part("star") RequestBody star, @Part("comment") RequestBody comment, @Part List<MultipartBody.Part> images);
 
     @GET("evaluate/{idProduct}")
-    Call<List<EvaluateResponse>> getEvaluates(@Path("idProduct") String idProduct);
+    Call<List<EvaluateResponse>> getEvaluates(@Path("idProduct") String idProduct,@Query("skip") int skip);
 
     @DELETE("evaluate/{idEvaluate}")
     Call<MessageResponse> deleteEvaluates(@Path("idEvaluate") String idEvaluate);

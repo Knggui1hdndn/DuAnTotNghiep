@@ -11,7 +11,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
+import com.knd.duantotnghiep.duantotnghiep.core.Pagination;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivityMyOderBinding;
+import com.knd.duantotnghiep.duantotnghiep.models.EvaluateResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +28,7 @@ private ItemOrderViewPager itemOrderViewPager;
         itemOrderViewPager=new ItemOrderViewPager(this);
     }
     private final ArrayList<String> strings = new ArrayList<>(Arrays.asList("Wait for confirmation","Confirmed", "Delivering", "Delivered", "Cancel", "Returns"));
-
+private Pagination orderResponsePagination;
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void initView() {
@@ -36,6 +38,7 @@ private ItemOrderViewPager itemOrderViewPager;
          new TabLayoutMediator(binding.tab, binding.viewPager, (tab, position) -> {
              tab.setText(strings.get(position));
         }).attach();
+
     }
 
     @Override

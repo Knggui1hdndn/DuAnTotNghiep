@@ -54,15 +54,15 @@ public class DetailsViewModel extends OrderViewModel {
      }
 
     public void getDetailsProduct(String idProduct) {
-        productRepository.getDetailsProduct(idProduct);
+        productRepository.getDetailsProduct(idProduct );
     }
 
     public void addEvaluates(String idProduct, RequestBody star,   RequestBody comment, List<MultipartBody.Part> images) {
         evaluateRepository.addEvaluates(idProduct, star,comment, images);
     }
 
-    public void getEvaluates(String idProduct) {
-        evaluateRepository.getEvaluates(idProduct);
+    public void getEvaluates(String idProduct, int skip) {
+        evaluateRepository.getEvaluates(idProduct,skip);
     }
 
     public void deleteEvaluate(String idEvaluate) {

@@ -75,7 +75,6 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
         user = userPreferencesManager.getCurrentUser();
         uriImg = FileProviderUtils.getUri(getDataDir().getPath() + "/avatar.png", this);
         file = FileProviderUtils.saveImage(binding.avatar, this);
-
     }
 
     @Override
@@ -99,6 +98,7 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                     .build());
         });
+
         setDataEditText();
     }
 

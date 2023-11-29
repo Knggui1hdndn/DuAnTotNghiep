@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseFragment;
+import com.knd.duantotnghiep.duantotnghiep.core.Pagination;
 import com.knd.duantotnghiep.duantotnghiep.databinding.FragmentItemOrderBinding;
+import com.knd.duantotnghiep.duantotnghiep.models.EvaluateResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.OrderResponse;
 import com.knd.duantotnghiep.duantotnghiep.respository.OrderRepository;
 import com.knd.duantotnghiep.duantotnghiep.ui.pay.OrderConfirmation;
@@ -49,47 +52,42 @@ public class ItemOrderFragment extends BaseFragment<FragmentItemOrderBinding> {
         return fragment;
     }
 
+    private Pagination orderResponsePagination;
+
     @Override
     public void initData() {
+
         myOrderAdapter = new MyOrderAdapter(idOrder -> {
             Intent intent = new Intent(requireActivity(), PaymentConfirmationActivity.class);
             intent.putExtra("order", idOrder);
             startActivity(intent);
         });
+        myOrderAdapter.setOnClickItemListener(item -> {
 
+        });
         binding.rcy.addItemDecoration(new DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL));
         assert getArguments() != null;
         status = getArguments().getString("status");
-        orderRepository.getOrdersByStatus(status);
+        orderRepository.getOrdersByStatus(status, 0);
+        orderResponsePagination = new Pagination<OrderResponse>(this,
+                binding.mProgress,
+                myOrderAdapter,
+                orderRepository.getOrdersByStatus, size -> {
+            orderRepository.getOrdersByStatus(status, size);
+        }).attach();
+        binding.rcy.addOnScrollListener(orderResponsePagination);
     }
 
     @Override
     public void initObserver() {
-        orderRepository.getOrdersByStatus.observe(this, listNetworkResult -> {
-            ApiCallBack.handleResult(listNetworkResult, new ApiCallBack.HandleResult<>() {
-                @Override
-                public void handleSuccess(List<OrderResponse> data) {
-                    if (!data.isEmpty()) myOrderAdapter.setData(data);
-                }
 
-                @Override
-                public void handleError(String error) {
-
-                }
-
-                @Override
-                public void handleLoading() {
-
-                }
-            });
-        });
     }
 
     @Override
     public void initView() {
         binding.rcy.setAdapter(myOrderAdapter);
         myOrderAdapter.setOnClickItemListener(item -> {
-            if (Objects.equals(item.getPayments(), "Wait for confirmation") ) {
+            if (Objects.equals(item.getPayments(), "Wait for confirmation")) {
                 Intent intent = new Intent(requireActivity(), PaymentConfirmationActivity.class);
                 intent.putExtra("order", item.get_id());
                 startActivity(intent);
