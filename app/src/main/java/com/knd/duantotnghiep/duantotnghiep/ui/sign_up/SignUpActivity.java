@@ -116,7 +116,7 @@ public class SignUpActivity extends HandleSignUpGoogle {
         mutableLiveData.forEach((liveData, textInputLayout) -> {
             liveData.observe(this, txt -> {
                 if (txt != null && !txt.isEmpty()) textInputLayout.setError(null);
-                else textInputLayout.setError("Do not leave blank " + textInputLayout.getHint());
+                else textInputLayout.setError("Vui lòng không để trống " + textInputLayout.getHint());
             });
         });
 
@@ -126,7 +126,7 @@ public class SignUpActivity extends HandleSignUpGoogle {
                 public void handleSuccess(User data) {
                     userPreferencesManager.saveUser(data);
                     startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                    showMessage("Login Success");
+                    showMessage("Đăng nhập thành công");
                     finish();
                 }
 
@@ -174,7 +174,7 @@ public class SignUpActivity extends HandleSignUpGoogle {
             ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<MessageResponse>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
-                    showMessage("Create account successfully");
+                    showMessage("Tạo tài khoản thành công");
                     startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
                     finish();
                 }

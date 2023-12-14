@@ -9,12 +9,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import android.annotation.SuppressLint;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.LocationRequest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.android.gms.location.CurrentLocationRequest;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.textfield.TextInputLayout;
 import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
@@ -31,6 +42,8 @@ import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -49,6 +62,56 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
     private User user;
     @Inject
     public UserRepository userRepository;
+    private GoogleMap googleMap;
+    @SuppressLint("MissingPermission")
+    private final ActivityResultLauncher<String[]> activityResult = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), o -> {
+        if (checkAllValuesTrue(o)) {
+            googleMap.setMyLocationEnabled(true);
+            getCurrentLocation();
+        } else {
+            showMessage("Permissions denied");
+        }
+    });
+
+    public boolean checkAllValuesTrue(Map<String, Boolean> map) {
+        for (Boolean value : map.values()) {
+            if (!value) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private FusedLocationProviderClient fusedLocationProviderClient;
+
+
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation() {
+        fusedLocationProviderClient.getCurrentLocation(new CurrentLocationRequest
+                        .Builder()
+                        .setPriority(LocationRequest.QUALITY_HIGH_ACCURACY)
+                        .build(), null)
+                .addOnSuccessListener(location -> getLocationByLaLng(new LatLng(location.getLatitude(), location.getLongitude())));
+    }
+
+    private void getLocationByLaLng(LatLng latLng) {
+        try {
+            List<Address> geocoder = new Geocoder(this).getFromLocation(latLng.latitude, latLng.longitude, 15);
+            assert geocoder != null;
+            if (!geocoder.isEmpty()) {
+                binding.txtInputAddress.getEditText().setText(geocoder.get(0).getAddressLine(0) + "");
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                googleMap.clear();
+                MarkerOptions markerOptions = new MarkerOptions().position(latLng);
+                markerOptions.title("Địa điểm giao hàng tới");
+                googleMap.addMarker(markerOptions);
+            }
+
+        } catch (IOException ignored) {
+
+        }
+    }
+
     private final ActivityResultLauncher<PickVisualMediaRequest> pickImage = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
         if (uri != null) {
             binding.avatar.setImageURI(uri);
@@ -72,6 +135,7 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
 
     @Override
     protected void initData() {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         user = userPreferencesManager.getCurrentUser();
         uriImg = FileProviderUtils.getUri(getDataDir().getPath() + "/avatar.png", this);
         file = FileProviderUtils.saveImage(binding.avatar, this);
@@ -85,6 +149,7 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
     @Override
     protected void initView() {
         setUpToolBar(binding.toolbar, true, getDrawable(R.drawable.baseline_arrow_back_ios_24));
+        setUpMap();
         binding.openCamera.setOnClickListener(view -> {
             if (CheckPermission.isPermissionCamera(this)) {
                 openCamera.launch(uriImg);
@@ -98,21 +163,42 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                     .build());
         });
-
+        binding.getLocation.setOnClickListener(latLng -> {
+            if (!CheckPermission.isPermissionLocation(this)) {
+                activityResult.launch(new String[]{CheckPermission.ACCESS_COARSE_LOCATION, CheckPermission.ACCESS_FINE_LOCATION});
+            } else {
+                getCurrentLocation();
+            }
+        });
         setDataEditText();
     }
 
     @SuppressLint("SetTextI18n")
     private void setDataEditText() {
-        setTextEditText(binding.txtInputName,user.getName());
-        setTextEditText(binding.txtInputPhoneNumber,user.getPhoneNumber()+"");
-        setTextEditText(binding.txtInputAddress,user.getAddress()+"");
-        setTextEditText(binding.txtInputEmail,user.getEmail()+"");
+        setTextEditText(binding.txtInputName, user.getName());
+        setTextEditText(binding.txtInputPhoneNumber, user.getPhoneNumber() + "");
+        setTextEditText(binding.txtInputAddress, user.getAddress() + "");
+        setTextEditText(binding.txtInputEmail, user.getEmail() + "");
         Utils.loadImage(binding.avatar, user.getAvatar());
     }
 
-    private void setTextEditText(TextInputLayout txtInputName,String s) {
+    private void setTextEditText(TextInputLayout txtInputName, String s) {
         txtInputName.getEditText().setText(s);
+    }
+
+    @SuppressLint("MissingPermission")
+    private void setUpMap() {
+        SupportMapFragment fragmentById = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert fragmentById != null;
+        fragmentById.getMapAsync(mMap -> {
+            if (CheckPermission.isPermissionLocation(this)) mMap.setMyLocationEnabled(true);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            mMap.setMaxZoomPreference(12);
+            mMap.setMinZoomPreference(12);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            mMap.setOnMapClickListener(this::getLocationByLaLng);
+            this.googleMap = mMap;
+        });
     }
 
     @Override
@@ -120,7 +206,7 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
         userRepository.editUser.observe(this, result -> ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<User>() {
             @Override
             public void handleSuccess(User data) {
-                new UserPreferencesManager(EditProfileActivity.this).saveUser(data);
+                userPreferencesManager.saveUser(data);
                 finish();
             }
 

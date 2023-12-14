@@ -11,7 +11,7 @@ public class OrderDetailDTO {
     private String name;
     private String color;
     private String image;
-
+private Boolean isEvaluate;
     public OrderDetailDTO(String size, int quantity, int sale, double price, double intoMoney, boolean isSelected, int __v, String name, String color, String image) {
         this.size = size;
         this.quantity = quantity;
@@ -23,6 +23,14 @@ public class OrderDetailDTO {
         this.name = name;
         this.color = color;
         this.image = image;
+    }
+
+    public Boolean getEvaluate() {
+        return isEvaluate;
+    }
+
+    public void setEvaluate(Boolean evaluate) {
+        isEvaluate = evaluate;
     }
 
     public String getSize() {

@@ -68,9 +68,9 @@ public class CreatePasswordFragment extends BaseFragment<FragmentCreatePasswordB
         if (pass.equals(confirmPass) && (pass.length() >= 8 && confirmPass.length() >= 8)) {
             authResponse.updatePassword(address, confirmPass);
         } else if (pass.length() <= 8 || confirmPass.length() <= 8) {
-            Toast.makeText(requireActivity(), "Password contains at least 8 characters", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), "Mật khẩu chứa ít nhất 8 ký tự", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(requireActivity(), "Please enter the same", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), "Vui lòng nhập giống nhau", Toast.LENGTH_SHORT).show();
         }
     }
 

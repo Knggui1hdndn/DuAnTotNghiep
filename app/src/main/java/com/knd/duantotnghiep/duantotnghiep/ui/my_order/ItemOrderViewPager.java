@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class ItemOrderViewPager extends FragmentStateAdapter {
 
-    private final ArrayList<String> strings = new ArrayList<>(Arrays.asList("Wait for confirmation","Confirmed", "Delivering", "Delivered", "Cancel", "Returns"));
+    private final ArrayList<String> strings = new ArrayList<>(Arrays.asList("Chờ xác nhận", "Đã xác nhận", "Đang giao hàng", "Đã giao hàng", "Hủy", "Trả hàng"));
 
     public ItemOrderViewPager(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);

@@ -38,7 +38,7 @@ public class ClothesFragment extends BaseFragment<FragmentClothesBinding> {
 
     @Override
     public void initData() {
-        clothesViewModel = new ViewModelProvider(requireActivity()).get(ClothesViewModel.class);
+        clothesViewModel = new ViewModelProvider(this).get(ClothesViewModel.class);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ClothesFragment extends BaseFragment<FragmentClothesBinding> {
             if (aBoolean) {
                 clothesViewModel.getCategories();
             } else {
-                showMessage("Please check your connection and try again");
+                showMessage("Vui lòng kiểm tra kết nối của bạn và thử lại");
             }
         });
 

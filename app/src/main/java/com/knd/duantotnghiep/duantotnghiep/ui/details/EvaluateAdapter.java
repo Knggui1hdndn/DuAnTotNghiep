@@ -1,5 +1,6 @@
 package com.knd.duantotnghiep.duantotnghiep.ui.details;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateRe
         return ItemEvaluateBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void bind(EvaluateResponse data, ItemEvaluateBinding binding) {
         User user = data.getUser();
@@ -38,19 +40,18 @@ public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateRe
         long countNo = data.getFeelings().stream().filter(feeling -> Objects.equals(feeling.getType(), TypeFeeling.DISLIKE.name())).count();
         Picasso.get().load(user.getAvatar() + "").fit().into(binding.imgAvatar);
         binding.txtName.setText(user.getName());
-        binding.txtDate.setText(Utils.formatDateDetails(data.getTimeCreated()));
+        binding.txtDate.setText(Utils.formatDateDetails(data.getCreateAt()));
         binding.txtComment.setText(data.getComment() + "");
         binding.yes.setOnClickListener(view -> {
             evaluateAdapterCallback.onYesClick(data.get_id());
             if (data.getFeelings().stream().anyMatch(feeling -> user.get_id().equals(feeling.getIdUser())))
-                binding.message.setText("You and " + (countYes-1) + " person found this article helpful");
-
+                binding.message.setText("Bạn và " + (countYes-1) +  " người thấy bài viết này hữu ích");
         });
 
         binding.no.setOnClickListener(view -> {
             evaluateAdapterCallback.onNoClick(data.get_id());
             if (data.getFeelings().stream().anyMatch(feeling -> (user.get_id().equals(feeling.getIdUser()))))
-                binding.message.setText("You and " + (countNo-1) + " person found this article unhelpful");
+                binding.message.setText("Bạn và " + (countNo-1) +  " người thấy bài viết này hữu ích");
 
         });
         setAdapterImage(data.getUrl());
@@ -58,11 +59,11 @@ public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateRe
         if (data.getFeelings().stream().anyMatch(feeling -> user.get_id().equals(feeling.getIdUser()))) {
 
             if (countYes >= 1) {
-                binding.message.setText("You and " + (countYes - 1) + " person found this article helpful");
+                binding.message.setText("Bạn và " + (countYes-1) +  " người thấy bài viết này hữu ích");
             }
 
             if (countNo >= 1) {
-                binding.message.setText("You and " + (countNo - 1) + " person found this article unhelpful");
+                binding.message.setText("Bạn và " + (countNo-1) +  " người thấy bài viết này hữu ích");
             }
 
         } else {

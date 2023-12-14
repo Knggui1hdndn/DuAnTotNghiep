@@ -1,8 +1,5 @@
 package com.knd.duantotnghiep.duantotnghiep.ui.search;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,24 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 
 import com.knd.duantotnghiep.duantotnghiep.Dao.SearchDao;
-import com.knd.duantotnghiep.duantotnghiep.R;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.core.Pagination;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivitySearchBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.ProductResponse;
-import com.knd.duantotnghiep.duantotnghiep.models.SearchLocal;
 import com.knd.duantotnghiep.duantotnghiep.ui.details.DetailsActivity;
-import com.knd.duantotnghiep.duantotnghiep.ui.sign_up.SignUpViewModel;
-import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
-import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -40,7 +30,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding> {
     public SearchAdapter searchAdapter;
     @Inject
     public SearchDao searchDao;
-    private ArrayList<ProductResponse> localArrayList = new ArrayList<>();
+    private ArrayList<ProductResponse> localArrayList = new ArrayList<ProductResponse>();
     private Pagination<ProductResponse> productResponsePagination;
 
     @Override

@@ -59,9 +59,9 @@ public class SignUpViewModel extends ViewModel {
 
 
         if (isNotNullAndEmpty(txtPhoneNumber))
-            errorPhoneNumber.postValue(!isPhoneNumberValid ? "Invalid phone number" : null);
+            errorPhoneNumber.postValue(!isPhoneNumberValid ? "Số điện thoại không hợp lệ" : null);
         if (isNotNullAndEmpty(txtPassword))
-            errorPassword.postValue(!isPasswordValid ? "Password contains at least 8 characters" : null);
+            errorPassword.postValue(!isPasswordValid ? "Mật khẩu bao gồm ít nhất 8 kí tự" : null);
 
         if (isPhoneNumberValid && isPasswordValid && isFirstNameNotEmpty && isLastNameNotEmpty && isAddressNotEmpty) {
             SignUpRequest signUpRequest1 = new SignUpRequest(getValue(txtFirstName) + " " + getValue(txtLastName),

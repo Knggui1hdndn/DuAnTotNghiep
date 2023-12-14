@@ -26,7 +26,7 @@
                     android:id="@+id/textView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Feedback"
+                    android:text="Nhận xét"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Rate us"
+                android:text="Đánh giá chúng tôi"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="from 1 to 5"
+                android:text="từ 1 đến 5 sao"
                 android:textSize="10sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,7 +137,7 @@
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/black"
                 android:id="@+id/choose"
-                android:text="Choose" />
+                android:text="Đánh giá" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

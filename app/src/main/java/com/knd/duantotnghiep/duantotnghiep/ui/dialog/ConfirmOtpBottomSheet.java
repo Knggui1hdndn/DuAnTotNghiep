@@ -111,7 +111,7 @@ public class ConfirmOtpBottomSheet extends BaseBottomSheetFrg<FragmentConfirmOtp
     }
 
     private void handleFocus(String text, TextInputLayout textInputLayout) {
-        mConfirmOtpViewModel.error.postValue("Please enter the OTP code sent to your phone number to complete the registration.");
+        mConfirmOtpViewModel.error.postValue("Vui lòng nhập mã OTP được gửi tới số điện thoại của bạn để hoàn tất đăng ký.");
 
         int currentIndex = textInputLayouts.indexOf(textInputLayout);
         if (text.length() == 1) {
@@ -131,13 +131,13 @@ public class ConfirmOtpBottomSheet extends BaseBottomSheetFrg<FragmentConfirmOtp
         return new CountDownTimer(60 * 2 * 1000, 1000) {
             @Override
             public void onTick(long l) {
-                txtResend.setText("Resend the code after " + (l / 1000) + " seconds.");
+                txtResend.setText("Gửi lại mã sau " + (l / 1000) + " giây.");
 
             }
 
             @Override
             public void onFinish() {
-                txtResend.setText("Resend");
+                txtResend.setText("Gửi lại");
                 txtResend.setEnabled(true);
             }
         };

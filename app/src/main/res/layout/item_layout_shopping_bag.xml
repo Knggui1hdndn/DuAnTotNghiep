@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:textColor="#FF0000"
 
-            android:text="Remaining:"
+            android:text="Còn lại:"
              android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txtRemaining" />

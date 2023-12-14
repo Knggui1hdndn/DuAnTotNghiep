@@ -2,35 +2,21 @@ package com.knd.duantotnghiep.duantotnghiep.ui.details;
 
 import static com.knd.duantotnghiep.duantotnghiep.utils.Utils.COUNT_SHOPPING_BAG;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Rect;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.knd.duantotnghiep.duantotnghiep.R;
@@ -38,7 +24,6 @@ import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.core.Pagination;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivityDetailsBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderRequest;
-import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.EvaluateRequest;
 import com.knd.duantotnghiep.duantotnghiep.models.EvaluateResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.FeelingRequest;
@@ -47,29 +32,17 @@ import com.knd.duantotnghiep.duantotnghiep.models.MessageResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.ProductResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.ProductDetail;
 import com.knd.duantotnghiep.duantotnghiep.models.TypeFeeling;
-import com.knd.duantotnghiep.duantotnghiep.ui.dialog.DialogRateCallback;
 import com.knd.duantotnghiep.duantotnghiep.ui.dialog.DialogRateFragment;
 import com.knd.duantotnghiep.duantotnghiep.ui.pay.OrderConfirmation;
 import com.knd.duantotnghiep.duantotnghiep.utils.AdapterCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.FileProviderUtils;
-import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 import com.knd.duantotnghiep.duantotnghiep.utils.UserPreferencesManager;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 import com.squareup.picasso.Picasso;
 
-import org.modelmapper.ModelMapper;
-
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 
 import javax.inject.Inject;
 
@@ -170,7 +143,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
                 setInfoAddtoBag("Buy now", animationEnter);
                 isShowing = true;
             } else {
-                showMessage("Do not choose color");
+                showMessage("Không chọn màu");
             }
 
         });
@@ -183,15 +156,15 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             if (imageQuantityClick != null) {
                 number = 0;
                 updateItemQuantity(1);
-                setInfoAddtoBag("Add to cart", animationEnter);
+                setInfoAddtoBag("Thêm vào giỏ hàng", animationEnter);
                 isShowing = true;
             } else {
-                showMessage("Do not choose color");
+                showMessage("Không chọn màu");
             }
         });
 
         binding.include2.txtAction.setOnClickListener(view -> {
-            if (!binding.include2.txtAction.getText().toString().equals("Add to cart")) {
+            if (!binding.include2.txtAction.getText().toString().equals("Thêm vào giỏ hàng")) {
                 detailsViewModel.checkBuyNow(imageQuantityClick.get_id(), Integer.parseInt(binding.include2.number.getText().toString()));
                 return;
             }
@@ -207,8 +180,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
         });
 
 
-
-     }
+    }
 
     public MultipartBody.Part createMultipartPart(File file) {
         return MultipartBody.Part.createFormData("avatars", file.getName(), RequestBody.create(file, MediaType.parse("multipart/form-data")));
@@ -306,13 +278,13 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
         sizeAdapter = new SizeAdapter();
         detailsViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
         idProduct = getIntent().getStringExtra("idProduct");
-        detailsViewModel.getDetailsProduct(idProduct );
-        productResponsePagination = new Pagination<EvaluateResponse>(this,
+        detailsViewModel.getDetailsProduct(idProduct);
+        productResponsePagination = new Pagination<>(this,
                 binding.mProgress,
                 evaluateAdapter,
                 detailsViewModel.getEvaluates, size -> {
-            detailsViewModel.getEvaluates(idProduct,size);
-        }).attach();
+            detailsViewModel.getEvaluates(idProduct, size);
+        }) .attach();
         binding.rcyEvaluate.addOnScrollListener(productResponsePagination);
     }
 
@@ -322,12 +294,11 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             @Override
             public void handleSuccess(MessageResponse datas) {
                 int number = Integer.parseInt(binding.include2.number.getText().toString());
-
                 double price = productResponse.getPrice();
                 double sale = productResponse.getSale();
                 double discountedPrice = price * (1 - (sale / 100));
                 double totalPayment = discountedPrice * number;
-                double totalCost =   price * (1 - (sale / 100)) * number;
+                double totalCost = price * (1 - (sale / 100)) * number;
                 Intent intent = new Intent(DetailsActivity.this, OrderConfirmation.class);
                 DetailOrderRequest orderRequest = new DetailOrderRequest(
                         productResponse.get_id(),
@@ -341,7 +312,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
                         , productResponse.getName()
                 );
                 intent.putExtra("totalCost", price * number);
-                intent.putExtra("discount", price * number-totalCost);
+                intent.putExtra("discount", price * number - totalCost);
                 intent.putExtra("totalPayment", totalPayment);
                 intent.putExtra("detailsOrder", new Gson().toJson(orderRequest));
                 startActivity(intent);
@@ -406,7 +377,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             ApiCallBack.handleResult(evaluateResponseNetworkResult, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
-                 }
+                }
 
                 @Override
                 public void handleError(String error) {
@@ -421,7 +392,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
         });
 
 
-         detailsViewModel.processDetailsOrder.observe(this, result -> {
+        detailsViewModel.processDetailsOrder.observe(this, result -> {
             ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(MessageResponse data) {
@@ -457,7 +428,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
 
                 menu.getItem(1).setIcon(isFavourite ? R.drawable.heart_click : R.drawable.heart_unclick);
 
-                if (!productQuantityDetails.isEmpty()) {
+                if (!productQuantityDetails.isEmpty() && productQuantityDetails != null) {
                     imgColorProducts = productQuantityDetails.get(0).getImageProducts();
                     productQuantityDetails.get(0).setClick(true);
                     for (int i = 0; i < productQuantityDetails.size(); i++) {
@@ -471,7 +442,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
                     colorAdapter.setData(imgColorProducts);
                     sizeAdapter.setData(productQuantityDetails);
                     binding.viewPager.setCurrentItem(0);
-                    detailsViewModel.getEvaluates(productResponse.get_id(),0);
+                    detailsViewModel.getEvaluates(productResponse.get_id(), 0);
                 }
             }
 
@@ -614,7 +585,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
 
         binding.txtName.setText(data.getName());
         binding.txtDesrepstion.setText(data.getDescribe());
-        binding.txtBought.setText(data.getSold() + "\n bought");
+        binding.txtBought.setText(data.getSold() + "\n đã bán");
 
         int remainingQuantity = 0;
 

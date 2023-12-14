@@ -37,10 +37,10 @@ public class NetworkResult<T> {
                         MessageResponse messageResponse = new Gson().fromJson(errorBody, MessageResponse.class);
                         liveData.postValue(new NetworkResult.Error<>(messageResponse.getError()));
                     } catch (IOException e) {
-                        liveData.postValue(new NetworkResult.Error<>("Error parsing error response"));
+                        liveData.postValue(new NetworkResult.Error<>("Lỗi phân tích lỗi phản hồi"));
                     }
                 } else {
-                    liveData.postValue(new NetworkResult.Error<>("Something Went Wrong"));
+                    liveData.postValue(new NetworkResult.Error<>("Đã xảy ra lỗi"));
                 }
 
 

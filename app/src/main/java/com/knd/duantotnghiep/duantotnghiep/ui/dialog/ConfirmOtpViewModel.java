@@ -41,10 +41,10 @@ public class ConfirmOtpViewModel extends ViewModel {
 
     public void signUpLocal(SignUpRequest signUpRequest, String otp) {
         if (otp.isEmpty()) {
-            error.postValue("Please ensure the otp field is not left blank.");
+            error.postValue("Hãy đảm bảo trường otp không bị bỏ trống.");
             enableError.postValue(true);
         } else if (otp.length() < 6) {
-            error.postValue("Please enter complete information");
+            error.postValue("Vui lòng nhập thông tin đầy đủ");
             enableError.postValue(true);
         } else {
             enableError.postValue(false);

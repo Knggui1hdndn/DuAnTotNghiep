@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,7 @@ public class WishListFragment extends BaseFragment<FragmentWishListBinding> {
             ApiCallBack.handleResult(arrayListNetworkResult, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(ArrayList<ProductResponse> data) {
-                    favouriteAdapter.setData(data);
+                     favouriteAdapter.setData(data);
                 }
 
                 @Override

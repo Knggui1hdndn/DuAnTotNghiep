@@ -1,5 +1,7 @@
 package com.knd.duantotnghiep.duantotnghiep.di;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.knd.duantotnghiep.duantotnghiep.remote.AuthApi;
 
 import com.knd.duantotnghiep.duantotnghiep.remote.AuthInterceptor;
@@ -48,9 +50,13 @@ public class Network {
     @Singleton
     @Provides
     public Retrofit.Builder providesRetrofit() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addConverterFactory(ScalarsConverterFactory.create())
+
                 .baseUrl(Constants.BASE_URL);
     }
 

@@ -34,7 +34,8 @@ public class OrderRepository {
 
     private MutableLiveData<NetworkResult<CountsOrderDetailsAndNoti>> _getCountNotiAndOrderDetails = new MutableLiveData<>();
     public LiveData<NetworkResult<CountsOrderDetailsAndNoti>> getCountNotiAndOrderDetails = _getCountNotiAndOrderDetails;
-
+    private MutableLiveData<NetworkResult<MessageResponse>> _cancelOrder = new MutableLiveData<>();
+    public LiveData<NetworkResult<MessageResponse>> cancelOrder = _cancelOrder;
 
     private MutableLiveData<NetworkResult<List<DetailOrderResponse>>> _getDetailOrders = new MutableLiveData<>();
     public LiveData<NetworkResult<List<DetailOrderResponse>>> getDetailOrders = _getDetailOrders;
@@ -72,7 +73,9 @@ public class OrderRepository {
     public void selectALl(Boolean isAll) {
         NetworkResult.handleCallApi(orderApi.selectALl(isAll), _selectALl, null);
     }
-
+    public void cancelOrder(String idOrder) {
+        NetworkResult.handleCallApi(orderApi.cancelOrder(idOrder), _cancelOrder, null);
+    }
 
     public void getDetailOrders(Boolean isPay) {
         NetworkResult.handleCallApi(orderApi.getDetailOrders(isPay), _getDetailOrders, null);

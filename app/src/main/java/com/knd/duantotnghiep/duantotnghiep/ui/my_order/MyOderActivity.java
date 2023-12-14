@@ -22,23 +22,26 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MyOderActivity extends BaseActivity<ActivityMyOderBinding> {
-private ItemOrderViewPager itemOrderViewPager;
+    private ItemOrderViewPager itemOrderViewPager;
+
     @Override
     protected void initData() {
-        itemOrderViewPager=new ItemOrderViewPager(this);
+        itemOrderViewPager = new ItemOrderViewPager(this);
     }
-    private final ArrayList<String> strings = new ArrayList<>(Arrays.asList("Wait for confirmation","Confirmed", "Delivering", "Delivered", "Cancel", "Returns"));
-private Pagination orderResponsePagination;
+
+    private final ArrayList<String> strings = new ArrayList<>(Arrays.asList("Chờ xác nhận", "Đã xác nhận", "Đang giao hàng", "Đã giao hàng", "Hủy", "Trả hàng"));
+    private Pagination orderResponsePagination;
+
+
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void initView() {
         setUpToolBar(binding.toolbar, true, getDrawable(R.drawable.baseline_arrow_back_ios_24));
         binding.viewPager.setOffscreenPageLimit(5);
         binding.viewPager.setAdapter(itemOrderViewPager);
-         new TabLayoutMediator(binding.tab, binding.viewPager, (tab, position) -> {
-             tab.setText(strings.get(position));
+        new TabLayoutMediator(binding.tab, binding.viewPager, (tab, position) -> {
+            tab.setText(strings.get(position));
         }).attach();
-
     }
 
     @Override

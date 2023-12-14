@@ -34,10 +34,10 @@ public class LoginViewModel extends ViewModel {
             FirebaseMessaging.getInstance().getToken().addOnSuccessListener(s -> loginLocal(new LoginRequest(txtAccount.getValue(), txtPassword.getValue()),s));
         }
         if (checkPass) {
-            errPassword.postValue("Do not blank password");
+            errPassword.postValue("Không để trống mật khẩu");
         }
         if (checkAccount) {
-            errAccount.postValue("Do not blank account");
+            errAccount.postValue("Không để trống tài khoản");
         }
 
     }

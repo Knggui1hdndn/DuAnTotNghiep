@@ -1,6 +1,7 @@
 package com.knd.duantotnghiep.duantotnghiep.core;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,12 +9,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.google.gson.Gson;
 import com.knd.duantotnghiep.duantotnghiep.utils.AdapterCallBack;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-public abstract class BaseAdapter<VB extends ViewBinding, T> extends RecyclerView.Adapter<BaseAdapter<VB, T>.ViewHolder> {
+public abstract class BaseAdapter<VB extends ViewBinding, T extends Object> extends RecyclerView.Adapter<BaseAdapter<VB, T>.ViewHolder> {
+
+    @SuppressWarnings("unchecked")
+    public BaseAdapter() {
+
+    }
+
 
     private AdapterCallBack.OnClickItemListener<T> onClickItemListener;
 
@@ -25,9 +38,11 @@ public abstract class BaseAdapter<VB extends ViewBinding, T> extends RecyclerVie
     protected final List<T> listData = new ArrayList<>();
 
     protected abstract VB getItemBinding(ViewGroup parent);
+
     protected abstract void bind(T data, VB binding);
 
-    @SuppressLint("NotifyDataSetChanged")
+    private Gson gson = new Gson();
+
     public void setData(List<T> data) {
         listData.clear();
         listData.addAll(data);
@@ -53,7 +68,7 @@ public abstract class BaseAdapter<VB extends ViewBinding, T> extends RecyclerVie
 
     @Override
     public int getItemCount() {
-        if (listData==null) return 0;
+        if (listData == null) return 0;
         return listData.size();
     }
 

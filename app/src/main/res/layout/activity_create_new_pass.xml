@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create new password"
+        android:text="Tạo mật khẩu mới"
         android:textSize="40dp"
         android:textColor="#090909"
         android:layout_marginTop="70dp"
@@ -19,13 +19,13 @@
         android:layout_marginTop="20dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Your password must include minimum 8 characters."
+        android:text="Mật khẩu của bạn phải bao gồm tối thiểu 8 ký tự."
         android:textColor="#FC655858"/>
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:id="@+id/edNewPassword"
-        android:hint="Password"
+        android:hint="Mật khẩu"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:inputType="textPassword"
@@ -34,7 +34,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:id="@+id/edReNewPassword"
-        android:hint="Repect Password"
+        android:hint="Nhập lại mật khẩu"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:inputType="textPassword"

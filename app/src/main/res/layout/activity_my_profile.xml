@@ -62,7 +62,7 @@
                 android:layout_marginTop="15dp"
                 android:drawableStart="@drawable/baseline_local_phone_24"
                 android:drawablePadding="5dp"
-                android:text="Phone Number: "
+                android:text="Số điện thoại: "
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view2" />
@@ -139,7 +139,7 @@
                 android:layout_marginTop="15dp"
                 android:drawableStart="@drawable/baseline_add_location_24"
                 android:drawablePadding="5dp"
-                android:text="Address: "
+                android:text="Địa chỉ: "
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view4" />
 
@@ -166,7 +166,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="Đăng xuất"
         android:textAllCaps="false"
         android:id="@+id/logout"
         android:padding="15dp"
@@ -191,7 +191,7 @@
         android:drawableEnd="@drawable/arrow_forward_ios"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="My Order"
+        android:text="Đơn haàng của tôi"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

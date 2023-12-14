@@ -17,6 +17,8 @@ import com.knd.duantotnghiep.duantotnghiep.ui.signIn.LoginActivity;
 import com.knd.duantotnghiep.duantotnghiep.utils.TokenManager;
 import com.knd.duantotnghiep.duantotnghiep.utils.UserPreferencesManager;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -63,18 +65,20 @@ public class MyProfileFragment extends BaseFragment<ActivityMyProfileBinding> {
 
     @Override
     public void onResume() {
-        initData();
+
         super.onResume();
+        initData();
     }
 
     @Override
     public void initData() {
         user = userPreferencesManager.getCurrentUser();
         if (user != null) {
-            Utils.loadImage(binding.avatar, user.getAvatar());
+            Picasso.get().load(user.getAvatar()).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE).into(binding.avatar);
             binding.txtName.setText(checkInfoNull(user.getName()));
             binding.txtAddress.setText(checkInfoNull(user.getAddress()));
-            binding.txtPhone.setText(checkInfoNull(user.getPhoneNumber()));
+            binding.txtEmail.setText(checkInfoNull(user.getEmail()));
         }
     }
 

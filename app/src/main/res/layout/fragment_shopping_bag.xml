@@ -15,7 +15,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Cart" />
+            app:title="Giỏ hàng" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All"
+                android:text="Tất cả"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/black"
-                android:text="Purchase"
+                android:text="Đặt hàng"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:backgroundTint="@null"
@@ -70,7 +70,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total payment "
+                android:text="Tổng tiền thanh toán "
                 app:layout_constraintBottom_toBottomOf="@+id/totalPayment"
                 app:layout_constraintEnd_toStartOf="@+id/totalPayment"
                 app:layout_constraintTop_toTopOf="@+id/totalPayment" />
@@ -90,7 +90,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Discount "
+                android:text="Giảm giá "
 
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"

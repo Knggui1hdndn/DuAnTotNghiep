@@ -216,6 +216,13 @@ public class ShoppingBagFragment extends BaseFragment<FragmentShoppingBagBinding
     public void initData() {
         detailsOrderAdapter = new DetailsOrderAdapter(this);
         shoppingBagViewModel = new ViewModelProvider(this).get(ShoppingBagViewModel.class);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isScoll = true;
         shoppingBagViewModel.getDetailOrders();
     }
 
