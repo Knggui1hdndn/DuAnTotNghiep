@@ -18,6 +18,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface OrderApi {
@@ -27,6 +28,10 @@ public interface OrderApi {
 
     @GET("order/detail-order")
     Call<List<DetailOrderResponse>> getDetailOrders(@Query("isPay") Boolean isPay);
+
+    @POST("order/cancel/{idOrder}")
+    Call<MessageResponse> cancelOrder(@Path("idOrder") String idOrder);
+
     @GET("order/detail-order")
     Call<OrderDTO> getDetailOrders(@Query("idOrder") String idOrder);
     @GET("order/count/orderDetails-notification")

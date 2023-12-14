@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:paddingEnd="10dp"
-                android:text="Already have an account ?"
+                android:text="Bạn đã có tài khoản ?"
                 android:textColor="#C3C3CA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/buttonSignIn"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="@color/black"
-                android:text="Sign in"
+                android:text="Đăng nhập"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Sign up"
+            android:text="Đăng nhập"
             android:textColor="#090909"
             android:textSize="40dp"
             android:textStyle="bold" />
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="5"
-                android:hint="First name"
+                android:hint="Tên"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +109,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Last name"
+                    android:hint="Họ"
                     android:text="@={SignUpViewModel.txtLastName}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -126,7 +126,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Address"
+                android:hint="Địa chỉ"
                 android:text="@={SignUpViewModel.txtAddress}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -143,7 +143,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
+                android:hint="Số điện thoại"
 
                 android:text="@={SignUpViewModel.txtPhoneNumber}" />
 
@@ -160,7 +160,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="Mật khẩu"
 
                 android:inputType="textPassword"
                 android:text="@={SignUpViewModel.txtPassword}" />
@@ -174,7 +174,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:backgroundTint="#090909"
-            android:text="Sign up"
+            android:text="Đăng kí"
             android:textAllCaps="false"
 
             android:textColor="#F3ECEF" />
@@ -205,7 +205,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Or sign in with"
+                android:text="Hoặc đăng kí với "
                 android:textColor="#B2ACAC"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -27,8 +27,6 @@ import okhttp3.RequestBody;
 public class DetailsViewModel extends OrderViewModel {
     private ProductRepository productRepository;
     private EvaluateRepository evaluateRepository;
-
-
     public LiveData<NetworkResult<ProductResponse>> getDetailsProduct;
     public LiveData<NetworkResult<List<EvaluateResponse>>> getEvaluates;
     public LiveData<NetworkResult<MessageResponse>> addFavourite;
@@ -36,8 +34,6 @@ public class DetailsViewModel extends OrderViewModel {
     public LiveData<NetworkResult<MessageResponse>> deleteEvaluate;
     public LiveData<NetworkResult<EvaluateResponse>> handelFeelingEvaluates;
     public LiveData<NetworkResult<EvaluateResponse>> addEvaluate;
-
-
 
     @Inject
     public DetailsViewModel(ProductRepository productRepository, EvaluateRepository evaluateRepository, OrderRepository orderRepository) {

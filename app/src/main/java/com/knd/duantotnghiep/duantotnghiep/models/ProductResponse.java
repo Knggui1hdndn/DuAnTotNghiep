@@ -3,8 +3,9 @@ package com.knd.duantotnghiep.duantotnghiep.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class ProductResponse   {
+public class ProductResponse {
     private String _id;
     private String name;
     private Float price;
@@ -12,9 +13,8 @@ public class ProductResponse   {
     private double star;
     private Float sale;
     private String description;
-    private String idCata;
-    private Boolean isFavourite=true;
-    private ArrayList<ProductDetail> productDetails;
+    private Boolean isFavourite = true;
+    private ArrayList<ProductDetail> productDetails = new ArrayList<>();
 
     public double getStar() {
         return star;
@@ -28,6 +28,17 @@ public class ProductResponse   {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if ((o instanceof ProductResponse that)) return that.get_id().equals(get_id());
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_id);
+    }
+
+    @Override
     public String toString() {
         return "ProductResponse{" +
                 "_id='" + _id + '\'' +
@@ -37,7 +48,6 @@ public class ProductResponse   {
                 ", star=" + star +
                 ", sale=" + sale +
                 ", description='" + description + '\'' +
-                ", idCata='" + idCata + '\'' +
                 ", isFavourite=" + isFavourite +
                 ", productDetails=" + productDetails +
                 '}';
@@ -75,14 +85,13 @@ public class ProductResponse   {
         this.productDetails = productDetails;
     }
 
-    public ProductResponse(String _id, String name, Float price, Integer sold, Float sale, String describe, String idCata, ArrayList<ProductDetail> productDetails) {
+    public ProductResponse(String _id, String name, Float price, Integer sold, Float sale, String describe, ArrayList<ProductDetail> productDetails) {
         this._id = _id;
         this.name = name;
         this.price = price;
         this.sold = sold;
         this.sale = sale;
         this.description = describe;
-        this.idCata = idCata;
         this.productDetails = productDetails;
     }
 
@@ -126,11 +135,5 @@ public class ProductResponse   {
         this.sale = sale;
     }
 
-    public String getIdCata() {
-        return idCata;
-    }
 
-    public void setIdCata(String idCata) {
-        this.idCata = idCata;
-    }
 }

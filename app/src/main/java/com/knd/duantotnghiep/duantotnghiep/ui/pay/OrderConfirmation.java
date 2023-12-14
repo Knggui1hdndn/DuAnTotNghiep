@@ -55,9 +55,9 @@ public class OrderConfirmation extends BaseActivity<LayoutConfimPurchaseBinding>
 
     @SuppressLint("SetTextI18n")
     private void setDeliveryInformation(User user) {
-        binding.address.setText("Address: " + checkInfoNull(user.getAddress()));
-        binding.name.setText("Name: " + checkInfoNull(user.getName()));
-        binding.phoneNumber.setText("Phone Number: " + checkInfoNull(user.getPhoneNumber()));
+        binding.address.setText("Địa chỉ: " + checkInfoNull(user.getAddress()));
+        binding.name.setText("Tên: " + checkInfoNull(user.getName()));
+        binding.phoneNumber.setText("Số điện thoại: " + checkInfoNull(user.getPhoneNumber()));
     }
 
     @Override
@@ -112,7 +112,7 @@ public class OrderConfirmation extends BaseActivity<LayoutConfimPurchaseBinding>
                 public void handleSuccess(String data) {
                     sendBroadcast(new Intent("confirm"));
                     if (binding.rdigr.getCheckedRadioButtonId() == R.id.cash) {
-                        showMessage("Wait for confirmation");
+                        showMessage("Chờ xác nhận");
                         finish();
                         return;
                     }

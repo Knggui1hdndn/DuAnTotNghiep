@@ -42,7 +42,7 @@ public class DetailsOrderAdapter extends BaseAdapter<ItemLayoutShoppingBagBindin
         boolean checkError = data.getQuantity() > data.getImageQuantity().getQuantity();
         if (checkError) {
             binding.txtError.setVisibility(View.VISIBLE);
-            binding.txtError.setText("The quantity of products exceeds the warehouse");
+            binding.txtError.setText("Số lượng sản phẩm vượt quá kho");
         } else {
             binding.txtError.setVisibility(View.GONE);
         }

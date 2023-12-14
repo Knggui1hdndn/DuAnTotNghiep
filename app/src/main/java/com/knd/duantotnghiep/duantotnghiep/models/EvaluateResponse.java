@@ -11,7 +11,7 @@ public class EvaluateResponse {
     private User user;
     private Integer star;
     private String comment;
-    private Long timeCreated;
+    private Long createAt;
     private ArrayList<Feeling> feelings;
     private ArrayList<String> url ;
 
@@ -33,12 +33,12 @@ public class EvaluateResponse {
         this.feelings = feelings;
     }
 
-    public Long getTimeCreated() {
-        return timeCreated;
+    public Long getCreateAt() {
+        return createAt;
     }
 
-    public void setTimeCreated(Long timeCreated) {
-        this.timeCreated = timeCreated;
+    public void setCreateAt(Long createAt) {
+        this.createAt = createAt;
     }
 
     public String get_id() {

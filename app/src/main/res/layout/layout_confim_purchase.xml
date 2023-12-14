@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@color/white"
-            app:title="Order confirmation"
+            app:title="Thông tin đơn hàng"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                     android:drawableStart="@drawable/baseline_location_on_24"
                     android:drawableTint="@color/click"
                     android:gravity="center"
-                    android:text="Delivery address"
+                    android:text="Địa chỉ giao hàng"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/baseline_filter_list_24"
                 android:drawableTint="@color/star"
-                android:text="Payment details"
+                android:text="Chi tiết thanh toán"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Total cost of goods "
+                android:text="Tổng giá trị đơn hàng "
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Discount "
+                android:text="Tiết kiếm được "
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -186,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Total payment "
+                android:text="Tổng tiền thanh toán "
                 android:textColor="@color/black"
 
                 android:textSize="15sp"
@@ -222,7 +222,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="#F44336"
-            android:text="Accuracy and Payment"
+            android:text="Xác nhận và thanh toán"
             android:textAllCaps="false"
             app:backgroundTint="@color/black"
             android:id="@+id/pay"

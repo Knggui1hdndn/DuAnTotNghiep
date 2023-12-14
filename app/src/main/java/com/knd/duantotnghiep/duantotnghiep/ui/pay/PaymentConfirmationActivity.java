@@ -86,7 +86,7 @@ public class PaymentConfirmationActivity extends BaseActivity<ActivityPaymentCon
             public void onFinish() {
                 visibilityView(false, false);
                 binding.txtContent.setText("");
-                binding.txtTime.setText("Order canceled due to non-payment. Click to refresh.");
+                binding.txtTime.setText("Đơn hàng bị hủy do không thanh toán. Nhấp để làm mới.");
             }
         };
     }
@@ -98,8 +98,7 @@ public class PaymentConfirmationActivity extends BaseActivity<ActivityPaymentCon
             @SuppressLint("NewApi")
             @Override
             public void handleSuccess(PayQR data) {
-                Log.d("aokdoskdpasd",data.toString());
-                Picasso.get().load(data.getUrl()).fit().into(binding.imgQRCode);
+                 Picasso.get().load(data.getUrl()).fit().into(binding.imgQRCode);
                 countDownTimer = countDownExp(data.getExpiration() - data.getTimeCurrent());
                 countDownTimer.start();
                 if (data.getExpiration() > data.getTimeCurrent()) {

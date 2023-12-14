@@ -35,7 +35,7 @@ public class FavouriteAdapter extends BaseAdapter<ItemWishListBinding, ProductRe
             binding.tvPrice.setText("đ " + Utils.formatPrice(discountedPrice));
             binding.tvTitle.setText(productResponse.getName());
             binding.txtStar.setText(productResponse.getStar() + "");
-            binding.sold.setText("Sold " + productResponse.getSold());
+            binding.sold.setText("Đã bán " + productResponse.getSold());
 
             if (productResponse.getProductDetails() != null && !productResponse.getProductDetails().isEmpty()) {
                 ProductDetail productDetail = productResponse.getProductDetails().get(0);

@@ -36,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class ItemOrderFragment extends BaseFragment<FragmentItemOrderBinding> {
     @Inject
     public OrderRepository orderRepository;
+    public static String idOrder = "";
 
     public ItemOrderFragment() {
         super(R.layout.fragment_item_order);
@@ -58,6 +59,7 @@ public class ItemOrderFragment extends BaseFragment<FragmentItemOrderBinding> {
     public void initData() {
 
         myOrderAdapter = new MyOrderAdapter(idOrder -> {
+            this.idOrder="";
             Intent intent = new Intent(requireActivity(), PaymentConfirmationActivity.class);
             intent.putExtra("order", idOrder);
             startActivity(intent);
@@ -69,7 +71,8 @@ public class ItemOrderFragment extends BaseFragment<FragmentItemOrderBinding> {
         assert getArguments() != null;
         status = getArguments().getString("status");
         orderRepository.getOrdersByStatus(status, 0);
-        orderResponsePagination = new Pagination<OrderResponse>(this,
+
+        orderResponsePagination = new Pagination<>(this,
                 binding.mProgress,
                 myOrderAdapter,
                 orderRepository.getOrdersByStatus, size -> {
@@ -84,10 +87,19 @@ public class ItemOrderFragment extends BaseFragment<FragmentItemOrderBinding> {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (!idOrder.isEmpty()) {
+            idOrder="";
+          requireActivity().recreate();
+        }
+    }
+
+    @Override
     public void initView() {
         binding.rcy.setAdapter(myOrderAdapter);
         myOrderAdapter.setOnClickItemListener(item -> {
-            if (Objects.equals(item.getPayments(), "Wait for confirmation")) {
+            if (Objects.equals(item.getPayments(), "Chờ xác nhận")) {
                 Intent intent = new Intent(requireActivity(), PaymentConfirmationActivity.class);
                 intent.putExtra("order", item.get_id());
                 startActivity(intent);

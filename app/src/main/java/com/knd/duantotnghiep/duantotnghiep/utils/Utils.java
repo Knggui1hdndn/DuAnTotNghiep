@@ -20,10 +20,13 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utils {
     public static int COUNT_SHOPPING_BAG = 0;
+    private final ArrayList<String> strings = new ArrayList<>(Arrays.asList("Chờ xác nhận", "Đã xác nhận", "Đang giao hàng", "Đã giao hàng", "Hủy", "Trả hàng"));
 
     public static void copyTextToCLipBoard(Context context, String text) {
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);

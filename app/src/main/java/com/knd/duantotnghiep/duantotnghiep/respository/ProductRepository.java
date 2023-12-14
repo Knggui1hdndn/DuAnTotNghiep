@@ -18,10 +18,10 @@ import retrofit2.http.Query;
 
 public class ProductRepository {//lớp trung gian giao tiếp giữa APi or local với viemModel
     private ProductAPI productAPI;
-    private final MutableLiveData<NetworkResult<ArrayList<ProductResponse>>> _getProducts = new MutableLiveData();
-    public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProducts = _getProducts;
-    private final MutableLiveData<NetworkResult<ArrayList<ProductResponse>>> _getProductByCategory = new MutableLiveData();
-    public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductByCategory = _getProductByCategory;
+    private final MutableLiveData<NetworkResult<List<ProductResponse>>> _getProducts = new MutableLiveData();
+    public LiveData<NetworkResult<List<ProductResponse>>> getProducts = _getProducts;
+    private final MutableLiveData<NetworkResult<List<ProductResponse>>> _getProductByCategory = new MutableLiveData();
+    public LiveData<NetworkResult<List<ProductResponse>>> getProductByCategory = _getProductByCategory;
 
     private final MutableLiveData<NetworkResult<CategoryResponse>> _getCategories = new MutableLiveData<>();
     public LiveData<NetworkResult<CategoryResponse>> getCategories = _getCategories;
@@ -62,12 +62,12 @@ public class ProductRepository {//lớp trung gian giao tiếp giữa APi or loc
         NetworkResult.handleCallApi(productAPI.getFavourites(), _getFavourites, null);
     }
 
-    public void getProducts() {
-        NetworkResult.handleCallApi(productAPI.getProducts(), _getProducts, null);
+    public void getProducts(Integer skip) {
+        NetworkResult.handleCallApi(productAPI.getProducts(skip), _getProducts, null);
     }
 
-    public void getProductByCategory(String idCategory) {
-        NetworkResult.handleCallApi(productAPI.getProductByCategory(idCategory), _getProductByCategory, null);
+    public void getProductByCategory(String idCategory,Integer skip) {
+        NetworkResult.handleCallApi(productAPI.getProductByCategory(idCategory,skip), _getProductByCategory, null);
     }
 
     public void getCategories() {

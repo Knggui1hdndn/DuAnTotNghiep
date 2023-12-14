@@ -19,8 +19,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class ClothesViewModel extends ViewModel {
     private ProductRepository productRepository;
 
-    public void getProduct() {
-        productRepository.getProducts();
+    public void getProduct(int skip) {
+        productRepository.getProducts(skip);
     }
     public void getProductsNew(int skip) {
         productRepository.getProductsNew(skip);
@@ -32,14 +32,14 @@ public class ClothesViewModel extends ViewModel {
         productRepository.getFavourites();
     }
 
-    public void getProductByCategory(String idCategory) {productRepository.getProductByCategory(idCategory);}
+    public void getProductByCategory(String idCategory,Integer skip) {productRepository.getProductByCategory(idCategory,skip);}
 
     public void getCategories() {
         productRepository.getCategories();
     }
 
-    public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProducts;
-    public LiveData<NetworkResult<ArrayList<ProductResponse>>> getProductByCategory;
+    public LiveData<NetworkResult<List<ProductResponse>>> getProducts;
+    public LiveData<NetworkResult<List<ProductResponse>>> getProductByCategory;
     public LiveData<NetworkResult<CategoryResponse>> getCategories;
     public LiveData<NetworkResult<List<ProductResponse>>> getProductsNew;
     public LiveData<NetworkResult<ArrayList<ProductResponse>>> getFavourites;

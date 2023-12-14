@@ -90,7 +90,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/shadow"
-                                android:text="Add to cart" />
+                                android:text="Thêm vào giỏ hàng" />
                         </FrameLayout>
                     </LinearLayout>
 
@@ -102,7 +102,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:backgroundTint="#4CAF50"
-                        android:text="Buy now"
+                        android:text="Mua ngày"
                         app:layout_constraintBottom_toBottomOf="@+id/mLayout"
                         app:layout_constraintStart_toEndOf="@+id/mLayout"
                         app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
@@ -111,7 +111,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Choose size"
+                        android:text="Chọn kích thước"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -147,10 +147,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Desrepstion"
+                        android:text="Mô tả"
                         android:textColor="@color/black"
                         android:textStyle="bold"
-
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/rcyColor" />
 
@@ -158,9 +157,7 @@
                         android:id="@+id/txtDesrepstion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thiết kế nam tính, năng động
-Giày nam Top Fit KRYPTON 8008007 được thiết kế đơn giản cùng lớp lót bên trong êm chân. Kiểu dáng cột dây phong cách tạo sự cá tính, năng động cho phái mạnh khi sử dụng.  Sản phẩm có thể diện được trong mọi hoàn cảnh như đi chơi, hay đi dạo phố. Thiết kế trẻ trung này rất được lòng các chàng trai."
-                        android:textColor="@color/black"
+                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -180,7 +177,7 @@ Giày nam Top Fit KRYPTON 8008007 được thiết kế đơn giản cùng lớp
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
-                            android:text="Evaluate"
+                            android:text="Đánh giá"
                             android:textColor="@color/black" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -228,7 +225,7 @@ Giày nam Top Fit KRYPTON 8008007 được thiết kế đơn giản cùng lớp
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Choose color or style"
+                        android:text="Chọn màu sắc hoặc kiểu dáng"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -253,8 +250,7 @@ Giày nam Top Fit KRYPTON 8008007 được thiết kế đơn giản cùng lớp
                         android:id="@+id/txtName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Giày nam Top Fit KRYPTON 8008007 SID66516"
-                        android:textColor="@color/black"
+                         android:textColor="@color/black"
                         android:textSize="21sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toStartOf="@+id/imageView6"

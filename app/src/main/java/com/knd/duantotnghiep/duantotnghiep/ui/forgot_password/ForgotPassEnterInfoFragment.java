@@ -136,7 +136,7 @@ public class ForgotPassEnterInfoFragment extends BaseFragment<FragEnterEmailPhon
     private void validateAddress() {
         String address = binding.edtAddress.getEditText().getText().toString();
         if (address.isEmpty()) {
-            binding.edtAddress.setError("Do not leave blank input");
+            binding.edtAddress.setError("Không để trống đầu vào");
         } else {
             if (Patterns.PHONE.matcher(address).matches()) {
                 signUpViewModel.sendOtp(new OTP("phone", address,null));

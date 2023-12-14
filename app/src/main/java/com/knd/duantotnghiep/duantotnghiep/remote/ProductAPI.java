@@ -19,7 +19,7 @@ public interface ProductAPI {
 
 
     @GET("products/")
-    Call<ArrayList<ProductResponse>> getProducts();
+    Call<List<ProductResponse>> getProducts(@Query("skip") Integer skip);
 
     @POST("products/favourite/{idProduct}")
     Call<MessageResponse> addFavourite(@Path("idProduct") String idProduct);
@@ -31,7 +31,7 @@ public interface ProductAPI {
     Call<ArrayList<ProductResponse>> getFavourites();
 
     @GET("products/{idCategory}")
-    Call<ArrayList<ProductResponse>> getProductByCategory(@Path("idCategory") String idCata);
+    Call<List<ProductResponse>> getProductByCategory(@Path("idCategory") String idCata,@Query("skip") Integer skip);
 
     @GET("products/categories")
     Call<CategoryResponse> getCategories();

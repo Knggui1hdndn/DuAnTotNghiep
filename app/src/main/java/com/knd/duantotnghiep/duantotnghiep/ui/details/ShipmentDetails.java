@@ -137,7 +137,7 @@ public class ShipmentDetails extends BaseActivity<ActivityShipmentDetailsBinding
         assert fragmentById != null;
         fragmentById.getMapAsync(mMap -> {
             if (CheckPermission.isPermissionLocation(this)) mMap.setMyLocationEnabled(true);
-            mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mMap.setMaxZoomPreference(12);
             mMap.setMinZoomPreference(12);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -155,7 +155,7 @@ public class ShipmentDetails extends BaseActivity<ActivityShipmentDetailsBinding
                 googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 googleMap.clear();
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng);
-                markerOptions.title("Delivery location to");
+                markerOptions.title("Địa điểm giao hàng tới");
                 googleMap.addMarker(markerOptions);
             }
 

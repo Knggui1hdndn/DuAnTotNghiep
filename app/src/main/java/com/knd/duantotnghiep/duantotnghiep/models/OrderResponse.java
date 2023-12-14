@@ -10,8 +10,18 @@ public class OrderResponse {
     private String name;
     private String phoneNumber;
     private String address;
+    private String codeOrders;
     private String payments;
     private String status;
+
+    public String getCodeOrders() {
+        return codeOrders;
+    }
+
+    public void setCodeOrders(String codeOrders) {
+        this.codeOrders = codeOrders;
+    }
+
     private String description;
     private boolean isPay;
     private List<DetailOrderResponse> detail;
