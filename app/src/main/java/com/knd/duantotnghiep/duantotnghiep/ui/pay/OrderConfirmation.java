@@ -92,10 +92,14 @@ public class OrderConfirmation extends BaseActivity<LayoutConfimPurchaseBinding>
 
         binding.pay.setOnClickListener(view -> {
             orderRequest = new OrderRequest(user.getName(), user.getPhoneNumber(), user.getAddress(), binding.rdigr.getCheckedRadioButtonId() == R.id.transfer ? Payments.TRANSFER : Payments.CASH);
+            if (user.getName().isEmpty() || user.getPhoneNumber().isEmpty() || user.getAddress().isEmpty()) {
+                showMessage("Vui lòng nhập đầy đủ thông tin nhận hàng");
+                return;
+            }
             if (idOrder != null) {
-                shoppingBagViewModel.purchase(idOrder, new CombinedOrderRequest(orderRequest,null));
+                shoppingBagViewModel.purchase(idOrder, new CombinedOrderRequest(orderRequest, null));
             } else {
-                shoppingBagViewModel.purchase(null, new CombinedOrderRequest(orderRequest,detailOrderRequest));
+                shoppingBagViewModel.purchase(null, new CombinedOrderRequest(orderRequest, detailOrderRequest));
             }
         });
         setDeliveryInformation(user);

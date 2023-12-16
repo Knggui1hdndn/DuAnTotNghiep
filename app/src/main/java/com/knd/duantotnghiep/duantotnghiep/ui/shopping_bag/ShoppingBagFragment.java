@@ -146,7 +146,7 @@ public class ShoppingBagFragment extends BaseFragment<FragmentShoppingBagBinding
                         }
                     });
                     checkOneSelected = true;
-                    requireActivity().registerReceiver(broadcastReceiver,new IntentFilter("confirm"));
+                    requireActivity().registerReceiver(broadcastReceiver, new IntentFilter("confirm"));
                 }
             }
 
@@ -239,8 +239,11 @@ public class ShoppingBagFragment extends BaseFragment<FragmentShoppingBagBinding
 
         binding.purchase.setOnClickListener(view -> {
             isScoll = false;
-
-            if (!isClickPurchase) shoppingBagViewModel.getDetailOrders();
+            if (detailOrderResponses.stream().filter(i -> i.getSelected()).count() > 0){
+                shoppingBagViewModel.getDetailOrders();
+            }else {
+                showMessage("Chưa có sản phẩm nào đc chọn");
+            }
         });
     }
 

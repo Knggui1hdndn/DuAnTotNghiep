@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -100,7 +101,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
     public void initView() {
         setUpToolBar(binding.toolbar, true, getDrawable(R.drawable.baseline_arrow_back_ios_24));
 
-        binding.rcyEvaluate.setAdapter(evaluateAdapter);
+
         binding.rcy.setAdapter(evaluateAdapter1);
         binding.include.shimmer.showShimmer(true);
         binding.rcyEvaluate.setAdapter(evaluateAdapter);
@@ -119,6 +120,7 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             detailsViewModel.addEvaluates(productResponse.get_id(), RequestBody.create(String.valueOf(star),
                             MediaType.parse("multipart/form-data")),
                     RequestBody.create(binding.edtEvaluate.getText().toString(), MediaType.parse("multipart/form-data")), part);
+
         });
 
 
@@ -333,10 +335,12 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             ApiCallBack.handleResult(evaluateResponseNetworkResult, new ApiCallBack.HandleResult<>() {
                 @Override
                 public void handleSuccess(EvaluateResponse data) {
+                    Log.d("Sdassdas",data.toString());
                     uris.clear();
                     evaluateAdapter1.setData(uris);
                     binding.edtEvaluate.setText("");
-                    evaluates.add(data);
+                     productResponsePagination.getList().add(0,data);
+                    evaluateAdapter.setData(productResponsePagination.getList());
                     evaluateAdapter.notifyDataSetChanged();
                     FileProviderUtils.deleteCache(DetailsActivity.this);
                 }
