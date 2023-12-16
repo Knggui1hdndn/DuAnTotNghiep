@@ -51,7 +51,19 @@ public class LoginActivity extends HandleSignInGoogle {
             startActivity(intent);
         });
         binding.btnSignIn.setOnClickListener(view -> {
-            loginViewModel.handleSignInLocal();
+            Boolean account = binding.edtAccount.getEditText().getText().toString().isBlank() || binding.edtAccount.getEditText().getText().toString().isEmpty();
+            Boolean pass = binding.edtPassword.getEditText().getText().toString().isBlank() || binding.edtPassword.getEditText().getText().toString().isEmpty();
+            if (!account && !pass) {
+                loginViewModel.handleSignInLocal();
+                return;
+            }
+            if (account) {
+                binding.edtAccount.setError("Không bỏ trống tài khoản");
+            }
+            if (pass) {
+                binding.edtPassword.setError("Không bỏ trống mật khẩu");
+            }
+
         });
 
         binding.btnLoginGg.setOnClickListener(view -> {
@@ -69,7 +81,6 @@ public class LoginActivity extends HandleSignInGoogle {
         loginViewModel.loginLocal.observe(this, result -> ApiCallBack.handleResult(result, new ApiCallBack.HandleResult<>() {
             @Override
             public void handleSuccess(User data) {
-                Log.d("adssssssssssssssss", data.getName() + "");
                 userPreferencesManager.saveUser(data);
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();

@@ -15,6 +15,7 @@ import com.knd.duantotnghiep.duantotnghiep.models.ProductDetail;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ProductAdapter extends BaseAdapter<ItemProductBinding, ProductResponse> {
@@ -30,9 +31,10 @@ public class ProductAdapter extends BaseAdapter<ItemProductBinding, ProductRespo
             double price = productResponse.getPrice();
             double sale = productResponse.getSale();
             double discountedPrice = price * (1 - (sale / 100));
+             DecimalFormat simpleFormatter=new DecimalFormat("##.#");
             binding.tvPrice.setText("đ " + Utils.formatPrice(discountedPrice));
             binding.tvTitle.setText(productResponse.getName());
-            binding.txtStar.setText(productResponse.getStar() + "");
+            binding.txtStar.setText(simpleFormatter.format(productResponse.getStar()) + "");
             binding.sold.setText("Đã bán " + productResponse.getSold() +" sản phẩm");
             ArrayList<ProductDetail> productDetail = productResponse.getProductDetails() ;
             if (!productDetail.isEmpty()){

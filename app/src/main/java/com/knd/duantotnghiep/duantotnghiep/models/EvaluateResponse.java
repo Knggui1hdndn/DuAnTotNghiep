@@ -12,8 +12,8 @@ public class EvaluateResponse {
     private Integer star;
     private String comment;
     private Long createAt;
-    private ArrayList<Feeling> feelings;
-    private ArrayList<String> url ;
+    private ArrayList<Feeling> feelings=new ArrayList<Feeling>();
+    private ArrayList<String> url =new ArrayList<String>();
 
 
 
@@ -69,6 +69,19 @@ public class EvaluateResponse {
 
     public ArrayList<String> getUrl() {
         return url;
+    }
+
+    @Override
+    public String toString() {
+        return "EvaluateResponse{" +
+                "_id='" + _id + '\'' +
+                ", user=" + user +
+                ", star=" + star +
+                ", comment='" + comment + '\'' +
+                ", createAt=" + createAt +
+                ", feelings=" + feelings +
+                ", url=" + url +
+                '}';
     }
 
     public void setUrl(ArrayList<String> url) {

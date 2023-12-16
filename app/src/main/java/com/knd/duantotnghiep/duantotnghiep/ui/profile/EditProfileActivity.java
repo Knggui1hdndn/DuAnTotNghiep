@@ -225,8 +225,19 @@ public class EditProfileActivity extends BaseActivity<ActivityEditProfileBinding
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.confirm) {
-            updateProfile();
-        }
+          try {
+              if (binding.txtInputName.getEditText().getText().toString().isEmpty() ||
+                      binding.txtInputAddress.getEditText().getText().toString().isEmpty()||
+                      binding.txtInputPhoneNumber.getEditText().getText().toString().isEmpty()||
+                      binding.txtInputEmail.getEditText().getText().toString().isEmpty()){
+                  showMessage("Vui lòng không bỏ trống thông tin");
+              }else {
+                  updateProfile();
+              }
+          }catch (Exception e) {
+              showMessage("Vui lòng không bỏ trống thông tin");
+          }
+          }
         return super.onOptionsItemSelected(item);
     }
 

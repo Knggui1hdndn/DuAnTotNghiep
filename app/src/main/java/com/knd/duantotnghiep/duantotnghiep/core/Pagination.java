@@ -80,6 +80,7 @@ public class Pagination<O> extends RecyclerView.OnScrollListener {
             ApiCallBack.handleResult(arrayListNetworkResult, new ApiCallBack.HandleResult<List<O>>() {
                 @Override
                 public void handleSuccess(List<O> data) {
+                    Log.d("kspfkpflapdflpd",data.toString());
                     if (!data.isEmpty() &&!list.contains(data.get(0)))   {
 
                         if (isAddAll()) {

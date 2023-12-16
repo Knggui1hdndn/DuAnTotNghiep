@@ -16,9 +16,11 @@ import com.knd.duantotnghiep.duantotnghiep.utils.AdapterCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.logging.SimpleFormatter;
 
 public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateResponse> {
     private AdapterCallBack.EvaluateAdapterCallback evaluateAdapterCallback;
@@ -39,6 +41,7 @@ public class EvaluateAdapter extends BaseAdapter<ItemEvaluateBinding, EvaluateRe
         long countYes = data.getFeelings().stream().filter(feeling -> Objects.equals(feeling.getType(), TypeFeeling.LIKE.name())).count();
         long countNo = data.getFeelings().stream().filter(feeling -> Objects.equals(feeling.getType(), TypeFeeling.DISLIKE.name())).count();
         Picasso.get().load(user.getAvatar() + "").fit().into(binding.imgAvatar);
+
         binding.txtName.setText(user.getName());
         binding.txtDate.setText(Utils.formatDateDetails(data.getCreateAt()));
         binding.txtComment.setText(data.getComment() + "");
