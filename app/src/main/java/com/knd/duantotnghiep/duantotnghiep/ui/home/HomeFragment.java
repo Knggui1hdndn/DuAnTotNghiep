@@ -28,7 +28,10 @@ import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
+import io.socket.client.Socket;
 
 @AndroidEntryPoint
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
@@ -112,7 +115,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
             startActivity(intent);
         });
         productAdapter.setOnClickItemListener(item -> {
-            Intent intent = new Intent(requireActivity(), DetailsActivity.class);
+             Intent intent = new Intent(requireActivity(), DetailsActivity.class);
             intent.putExtra("idProduct", item.get_id());
             startActivity(intent);
         });

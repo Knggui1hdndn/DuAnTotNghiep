@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<item android:id="@+id/cart"
-    android:title="Cart"
-    android:icon="@drawable/baseline_shopping_cart_24"
-    app:showAsAction="always"
-    />
-    <item android:id="@+id/notification"
-        android:title="notification"
-
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/suppost"
+        android:title="Cart"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/notification"
         android:icon="@drawable/baseline_notifications_24"
-        app:showAsAction="always"
-        /></menu>
+        android:title="notification"
+        app:showAsAction="always" />
+</menu>

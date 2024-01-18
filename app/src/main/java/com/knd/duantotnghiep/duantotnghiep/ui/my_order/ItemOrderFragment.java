@@ -62,6 +62,7 @@ public class ItemOrderFragment extends BaseFragment<FragmentItemOrderBinding> {
             this.idOrder="";
             Intent intent = new Intent(requireActivity(), PaymentConfirmationActivity.class);
             intent.putExtra("order", idOrder);
+            intent.putExtra("recreate", true);
             startActivity(intent);
         });
         myOrderAdapter.setOnClickItemListener(item -> {

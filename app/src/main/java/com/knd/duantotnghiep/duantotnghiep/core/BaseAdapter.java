@@ -22,11 +22,6 @@ import java.util.stream.Collectors;
 
 public abstract class BaseAdapter<VB extends ViewBinding, T extends Object> extends RecyclerView.Adapter<BaseAdapter<VB, T>.ViewHolder> {
 
-    @SuppressWarnings("unchecked")
-    public BaseAdapter() {
-
-    }
-
 
     private AdapterCallBack.OnClickItemListener<T> onClickItemListener;
 
@@ -41,7 +36,6 @@ public abstract class BaseAdapter<VB extends ViewBinding, T extends Object> exte
 
     protected abstract void bind(T data, VB binding);
 
-    private Gson gson = new Gson();
 
     public void setData(List<T> data) {
         listData.clear();
@@ -68,7 +62,6 @@ public abstract class BaseAdapter<VB extends ViewBinding, T extends Object> exte
 
     @Override
     public int getItemCount() {
-        if (listData == null) return 0;
         return listData.size();
     }
 

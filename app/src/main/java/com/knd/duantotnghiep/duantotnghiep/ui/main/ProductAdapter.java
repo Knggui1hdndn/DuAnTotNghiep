@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProductAdapter extends BaseAdapter<ItemProductBinding, ProductResponse> {
     @Override
@@ -27,29 +28,31 @@ public class ProductAdapter extends BaseAdapter<ItemProductBinding, ProductRespo
     @SuppressLint("SetTextI18n")
     @Override
     protected void bind(ProductResponse productResponse, ItemProductBinding binding) {
-         try {
+        try {
+            binding.view.setText(productResponse.getView()+"");
             double price = productResponse.getPrice();
             double sale = productResponse.getSale();
             double discountedPrice = price * (1 - (sale / 100));
-             DecimalFormat simpleFormatter=new DecimalFormat("##.#");
+            DecimalFormat simpleFormatter = new DecimalFormat("##.#");
+            binding.txtStar.setText(simpleFormatter.format(productResponse.getStar()) + "");
+
             binding.tvPrice.setText("đ " + Utils.formatPrice(discountedPrice));
             binding.tvTitle.setText(productResponse.getName());
-            binding.txtStar.setText(simpleFormatter.format(productResponse.getStar()) + "");
-            binding.sold.setText("Đã bán " + productResponse.getSold() +" sản phẩm");
-            ArrayList<ProductDetail> productDetail = productResponse.getProductDetails() ;
-            if (!productDetail.isEmpty()){
-                ArrayList<ImageQuantity> imageProduct = productDetail.get(0).getImageProducts() ;
-                if (!imageProduct.isEmpty()){
+            binding.sold.setText("Đã bán " + productResponse.getSold() + " sản phẩm");
+            ArrayList<ProductDetail> productDetail = productResponse.getProductDetails();
+            if (!productDetail.isEmpty()) {
+                ArrayList<ImageQuantity> imageProduct = productDetail.get(0).getImageProducts();
+                if (!imageProduct.isEmpty()) {
                     ImageQuantity imageQuantity = imageProduct.get(0);
                     Picasso.get().load(imageQuantity.getImageProduct().getImage()).into(binding.image);
-                }else {
+                } else {
                     binding.image.setImageResource(R.drawable.baseline_image_24);
-                 }
-            }else {
+                }
+            } else {
                 binding.image.setImageResource(R.drawable.baseline_image_24);
             }
         } catch (Exception e) {
-            Log.d("skdsdkdskndnsd", e.getLocalizedMessage());
+            Log.d("skdsdkdskndnsd", Objects.requireNonNull(e.getLocalizedMessage()));
         }
     }
 }

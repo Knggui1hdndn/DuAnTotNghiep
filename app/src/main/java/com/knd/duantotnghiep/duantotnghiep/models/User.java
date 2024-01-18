@@ -19,8 +19,8 @@ public class User implements Serializable {
     private String _id;
     private String name;
     private String avatar;
-    private String address;
-    private String phoneNumber;
+    private String address="";
+    private String phoneNumber="";
     private String email;
     private String password;
     private String authType = AuthType.LOCAL.name();

@@ -86,7 +86,7 @@
                 android:drawableEnd="@drawable/baseline_location_on_24"
                 android:drawableTint="@color/click"
                 android:gravity="center"
-                android:text="Get current location"
+                android:text="Lấy vị trí hiện tại"
                 android:textColor="@color/click"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="@+id/textView27"

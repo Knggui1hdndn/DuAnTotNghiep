@@ -35,7 +35,7 @@ public class Utils {
     }
 
     public static void loadImage(ImageView imageView, String path) {
-        Picasso.get().load(path).into(imageView);
+        Picasso.get().load(path).fit().into(imageView);
     }
 
     public static void showKeyboard(EditText mEtSearch, Context context) {

@@ -5,34 +5,16 @@ import static com.knd.duantotnghiep.duantotnghiep.utils.Utils.COUNT_SHOPPING_BAG
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.OptIn;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.badge.BadgeDrawable;
-import com.google.android.material.badge.BadgeUtils;
-import com.google.android.material.badge.ExperimentalBadgeUtils;
 import com.google.android.material.navigation.NavigationBarView;
 import com.knd.duantotnghiep.duantotnghiep.MainPager;
 
@@ -42,15 +24,12 @@ import com.knd.duantotnghiep.duantotnghiep.broadcast.NetworkMonitor;
 import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivityMainBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.CountsOrderDetailsAndNoti;
-import com.knd.duantotnghiep.duantotnghiep.models.DetailOrderResponse;
+import com.knd.duantotnghiep.duantotnghiep.ui.dialog.ChatActivity;
 import com.knd.duantotnghiep.duantotnghiep.ui.noti.NotificationActivity;
 import com.knd.duantotnghiep.duantotnghiep.ui.search.SearchActivity;
 import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.CheckPermission;
-import com.knd.duantotnghiep.duantotnghiep.utils.NetworkResult;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -75,6 +54,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     protected void initData() {
+        binding.chat.setOnClickListener(view -> {
+            startActivity(new Intent(this, ChatActivity.class));
+        });
+        binding.close.setOnClickListener(view -> {
+            binding.mLayoutSp.setVisibility(View.GONE);
+        });
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (!CheckPermission.isPermissionPostNotification(this)) {
@@ -95,7 +80,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             @Override
             public void handleSuccess(CountsOrderDetailsAndNoti data) {
                 COUNT_SHOPPING_BAG = data.getCountOrderDetails();
-                Utils.setUpBadge(MainActivity.this, binding.toolbar, data.getCountOrderDetails(), R.id.cart);
                 Utils.setUpBadge(MainActivity.this, binding.toolbar, data.getCountNotification(), R.id.notification);
                 binding.bottomNav.getOrCreateBadge(R.id.shoppingBagFragment).setText(data.getCountOrderDetails() + "");
             }
@@ -167,11 +151,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.myProfileActivity ||itemId == R.id.wishListFragment) {
-                binding.toolbar.setVisibility(View.GONE);
-            } else {
-                binding.toolbar.setVisibility(View.VISIBLE);
-             }
+                if (itemId == R.id.myProfileActivity || itemId == R.id.wishListFragment) {
+                    binding.toolbar.setVisibility(View.GONE);
+                } else {
+                    binding.toolbar.setVisibility(View.VISIBLE);
+                }
                 if (itemId == R.id.homeFragment) {
                     binding.viewPager.setCurrentItem(0, false);
                     return true;
@@ -203,10 +187,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.notification){
+        if (item.getItemId() == R.id.notification) {
             startActivity(new Intent(this, NotificationActivity.class));
             return true;
         }
+        if (item.getItemId() == R.id.cart) startActivity(new Intent(this, ChatActivity.class));
         return super.onOptionsItemSelected(item);
     }
 

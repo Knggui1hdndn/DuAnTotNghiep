@@ -14,6 +14,7 @@ import com.knd.duantotnghiep.duantotnghiep.core.BaseActivity;
 import com.knd.duantotnghiep.duantotnghiep.databinding.ActivityPaymentConfirmationBinding;
 import com.knd.duantotnghiep.duantotnghiep.models.OrderResponse;
 import com.knd.duantotnghiep.duantotnghiep.models.PayQR;
+import com.knd.duantotnghiep.duantotnghiep.ui.my_order.ItemOrderFragment;
 import com.knd.duantotnghiep.duantotnghiep.ui.shopping_bag.ShoppingBagViewModel;
 import com.knd.duantotnghiep.duantotnghiep.utils.ApiCallBack;
 import com.knd.duantotnghiep.duantotnghiep.utils.Utils;
@@ -43,7 +44,7 @@ public class PaymentConfirmationActivity extends BaseActivity<ActivityPaymentCon
         visibilityView(false, true);
         setUpToolBar(binding.mToolbar, true, getDrawable(R.drawable.baseline_arrow_back_ios_24));
         binding.txtTime.setOnClickListener(v -> {
-            if (binding.textView.getText().equals("Order was canceled due to non-payment. Click to refresh")) {
+            if (binding.textView.getText().equals("Đơn hàng đã bị hủy do không thanh toán. Bấm để làm mới")) {
                 recreate();
             }
         });
@@ -70,7 +71,11 @@ public class PaymentConfirmationActivity extends BaseActivity<ActivityPaymentCon
     public void initData() {
         payViewModel = new ViewModelProvider(this).get(PayViewModel.class);
         String idOrder = getIntent().getStringExtra("order");
-        payViewModel.getOnGenerateQr(idOrder);
+        Boolean recreate=getIntent().getBooleanExtra("recreate",false);
+        if (recreate){
+            ItemOrderFragment.idOrder=idOrder;
+        }
+        payViewModel.getOnGenerateQr(idOrder,recreate);
     }
 
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm : ss");
@@ -99,7 +104,7 @@ public class PaymentConfirmationActivity extends BaseActivity<ActivityPaymentCon
             @Override
             public void handleSuccess(PayQR data) {
                  Picasso.get().load(data.getUrl()).fit().into(binding.imgQRCode);
-                countDownTimer = countDownExp(data.getExpiration() - data.getTimeCurrent());
+                countDownTimer = countDownExp(data.getExpiration() - System.currentTimeMillis());
                 countDownTimer.start();
                 if (data.getExpiration() > data.getTimeCurrent()) {
                     setInfoPayments(data);

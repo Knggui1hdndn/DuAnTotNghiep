@@ -25,7 +25,7 @@ public class PayViewModel extends ViewModel {
     public LiveData<NetworkResult<PayQR>> getOnGenerateQr;
 
 
-    public void getOnGenerateQr(String order) {
-        userResponse.generateQR(order);
+    public void getOnGenerateQr(String order,Boolean recreate) {
+        userResponse.generateQR(order,recreate);
     }
 }

@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.socket.client.Socket;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -68,7 +69,8 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
     private Boolean isFavourite = false;
     private Boolean isShowing = false;
     private final EvaluateRequest evaluateRequest = new EvaluateRequest();
-
+    @Inject
+    public Socket socket;
     @Override
     public ActivityDetailsBinding getViewBinding() {
         return ActivityDetailsBinding.inflate(getLayoutInflater());
@@ -91,7 +93,6 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
                 part.add(createMultipartPart(FileProviderUtils.createFileFromUri(uri, this)));
                 this.uris.add(String.valueOf(uri));
             });
-
             evaluateAdapter1.setData(this.uris);
         }
     });
@@ -288,6 +289,8 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> {
             detailsViewModel.getEvaluates(idProduct, size);
         }) .attach();
         binding.rcyEvaluate.addOnScrollListener(productResponsePagination);
+        socket.emit("add_view",idProduct);
+
     }
 
     @Override

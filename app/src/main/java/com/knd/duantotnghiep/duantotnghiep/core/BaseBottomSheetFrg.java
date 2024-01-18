@@ -17,6 +17,8 @@ import com.knd.duantotnghiep.duantotnghiep.R;
 
 import androidx.annotation.LayoutRes;
 
+import java.util.Objects;
+
 public abstract class BaseBottomSheetFrg<VB extends ViewBinding> extends BottomSheetDialogFragment {
 
     private int layout;
@@ -40,7 +42,7 @@ public abstract class BaseBottomSheetFrg<VB extends ViewBinding> extends BottomS
         activity = requireActivity();
         binding = getViewBinding(view);
 
-        getDialog().setOnShowListener(dialogInterface -> {
+        Objects.requireNonNull(getDialog()).setOnShowListener(dialogInterface -> {
             BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialogInterface;
             View bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
             if (bottomSheet != null) {

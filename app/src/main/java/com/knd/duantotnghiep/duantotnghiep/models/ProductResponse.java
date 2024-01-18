@@ -10,6 +10,7 @@ public class ProductResponse {
     private String name;
     private Float price;
     private Integer sold;
+    private Long view= 0L;
     private double star;
     private Float sale;
     private String description;
@@ -25,6 +26,14 @@ public class ProductResponse {
     }
 
     public ProductResponse() {
+    }
+
+    public Long getView() {
+        return view;
+    }
+
+    public void setView(Long view) {
+        this.view = view;
     }
 
     @Override
