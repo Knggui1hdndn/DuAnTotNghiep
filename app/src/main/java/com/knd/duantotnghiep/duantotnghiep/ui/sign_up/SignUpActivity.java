@@ -175,8 +175,7 @@ public class SignUpActivity extends HandleSignUpGoogle {
                 @Override
                 public void handleSuccess(MessageResponse data) {
                     showMessage("Tạo tài khoản thành công");
-                    startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
-                    finish();
+                 finish();
                 }
 
                 @Override

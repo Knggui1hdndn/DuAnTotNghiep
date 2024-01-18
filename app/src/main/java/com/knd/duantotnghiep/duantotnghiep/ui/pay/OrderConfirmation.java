@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -69,6 +70,7 @@ public class OrderConfirmation extends BaseActivity<LayoutConfimPurchaseBinding>
     protected void initData() {
         shoppingBagViewModel = new ViewModelProvider(this).get(ShoppingBagViewModel.class);
         user = userPreferencesManager.getCurrentUser();
+        Log.d("ShoppingBagViewModel",user.toString());
         Intent intent = getIntent();
         totalCost = intent.getDoubleExtra("totalCost", 0.0);
         discount = intent.getDoubleExtra("discount", 0.0);

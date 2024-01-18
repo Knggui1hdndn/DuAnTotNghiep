@@ -38,8 +38,8 @@ public class UserRepository {
     private MutableLiveData<NetworkResult<User>> _editUser = new MutableLiveData<>(); //
     public LiveData<NetworkResult<User>> editUser = _editUser;
 
-    public void generateQR(String orderResponse) {
-        NetworkResult.handleCallApi(userApi.generateQR(orderResponse), _generateQr, null);
+    public void generateQR(String orderResponse,Boolean recreate) {
+        NetworkResult.handleCallApi(userApi.generateQR(orderResponse,recreate), _generateQr, null);
     }
 
     public void searchProduct(String name, int skip) {

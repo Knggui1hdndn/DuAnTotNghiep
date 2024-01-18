@@ -138,7 +138,7 @@
                 android:layout_marginBottom="25dp"
                 android:backgroundTint="@color/black"
                 android:foreground="?attr/selectableItemBackground"
-                android:text="Tạo tài khoản"
+                android:text="Xác nhận"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 

@@ -80,43 +80,12 @@ public class Pagination<O> extends RecyclerView.OnScrollListener {
             ApiCallBack.handleResult(arrayListNetworkResult, new ApiCallBack.HandleResult<List<O>>() {
                 @Override
                 public void handleSuccess(List<O> data) {
-                    Log.d("kspfkpflapdflpd",data.toString());
-                    if (!data.isEmpty() &&!list.contains(data.get(0)))   {
+                    Log.d("kspfkpflapdflpd", data.toString());
+                    if (!data.isEmpty() && !list.contains(data.get(0))) {
 
                         if (isAddAll()) {
                             list.addAll(data);
                         }
-//
-//                        Iterator<O> oIterator = list.iterator();
-//                        boolean check=false;
-//                        while (oIterator.hasNext()) {
-//                            Object o = oIterator.next();
-//                            ProductResponse productResponse = extractObject(o, ProductResponse.class);
-//                            EvaluateResponse evaluateResponse = extractObject(o, EvaluateResponse.class);
-//                            OrderResponse orderResponse = extractObject(o, OrderResponse.class);
-//                            if (productResponse != null) {
-//                                if (((List<ProductResponse>) list).stream().filter(r -> productResponse.get_id().equals(r.get_id())).count() > 1) {
-//                                    oIterator.remove();
-//                                    check=true;
-//                                }
-//                                continue;
-//                            }
-//                            if (evaluateResponse != null) {
-//                                if (((List<EvaluateResponse>) list).stream().filter(r -> evaluateResponse.get_id().equals(r.get_id())).count() > 1) {
-//                                    check=true;
-//                                    oIterator.remove();
-//                                }
-//                                continue;
-//                            }
-//                            if (orderResponse != null) {
-//                                if (((List<OrderResponse>) list).stream().filter(r -> orderResponse.get_id().equals(r.get_id())).count() > 1) {
-//                                    check=true;
-//                                    oIterator.remove();
-//                                }
-//                                continue;
-//                            }
-//                        }
-//                        if (check) { Collections.reverse(list);}
                         vbtBaseAdapter.setData(isAddAll() ? list : data);
                     }
 

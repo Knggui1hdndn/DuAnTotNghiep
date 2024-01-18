@@ -45,6 +45,7 @@ public class LoginActivity extends HandleSignInGoogle {
     protected void initView() {
         if (userPreferencesManager.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));
+            return;
         }
         binding.tvForgotPassword.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);

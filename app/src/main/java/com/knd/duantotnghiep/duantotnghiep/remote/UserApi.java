@@ -22,7 +22,7 @@ import retrofit2.http.Query;
 
 public interface UserApi {
     @GET("users/generate/QR")
-    Call<PayQR> generateQR(@Query("idOrder") String idOrder);
+    Call<PayQR> generateQR(@Query("idOrder") String idOrder,@Query("recreate") Boolean recreate);
 
     @GET("users/search")
     Call<List<ProductResponse>> searchProduct(@Query("name") String name, @Query("skip") int skip);

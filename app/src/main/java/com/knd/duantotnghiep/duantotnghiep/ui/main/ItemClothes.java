@@ -26,6 +26,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.socket.client.Socket;
 
 @AndroidEntryPoint
 public class ItemClothes extends BaseFragment<ItemClothesFragmentBinding> {
@@ -46,9 +47,10 @@ public class ItemClothes extends BaseFragment<ItemClothesFragmentBinding> {
     @Override
     public void initData() {
         productAdapter = new ProductAdapter();
+
         binding.recyclerView.setAdapter(productAdapter);
         productAdapter.setOnClickItemListener(item -> {
-            Intent intent = new Intent(requireActivity(), DetailsActivity.class);
+             Intent intent = new Intent(requireActivity(), DetailsActivity.class);
             intent.putExtra("idProduct", item.get_id());
             startActivity(intent);
         });

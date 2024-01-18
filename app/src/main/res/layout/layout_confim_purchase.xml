@@ -100,7 +100,7 @@
                 android:drawableStart="@drawable/baseline_monetization_on_24"
                 android:drawablePadding="10dp"
                 android:drawableTint="@color/click"
-                android:text="Payment methods"
+                android:text="Phương thức thanh toán"
                 android:textColor="@color/black" />
 
             <RadioGroup
@@ -113,14 +113,14 @@
                     android:id="@+id/cash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment on delivery" />
+                    android:text="Thanh toán khi nhận hàng" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:id="@+id/transfer"
-                    android:text="Online payment" />
+                    android:text="Thanh toán chuyển khoản" />
             </RadioGroup>
         </LinearLayout>
 

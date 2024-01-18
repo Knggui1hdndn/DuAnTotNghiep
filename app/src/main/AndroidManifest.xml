@@ -42,6 +42,9 @@
             android:name=".ui.buynow.BuyNowActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.dialog.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.noti.NotificationActivity"
             android:exported="false" />
 
